@@ -1,0 +1,157 @@
+.App {
+  text-align: center;
+  font-family: "Avenir Next", "American Typewriter", Arial, Helvetica, sans-serif;
+}
+
+.App-header {
+  background-color: #222;
+  padding: 0 20px;
+  color: white;
+  text-align: right;
+}
+
+.App-title {
+  float: left;
+  height: 100%;
+  padding: 0;
+  margin-top: .4rem;
+}
+
+.App-intro {
+  padding: 0 20px;
+}
+
+/* ============================================================= */
+
+h1 {
+  margin: 0;
+  padding: 1rem 0;
+}
+
+.navigation {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+  > li {
+    display: inline-block;
+    padding: 1rem;
+    cursor:pointer;
+
+    &.is-selected {
+      color: greenyellow;
+    }
+  }
+}
+
+input,
+.input,
+select {
+  box-sizing: border-box;
+  padding: 0 .5rem;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  appearance: none;
+  font-family: Monospace;
+}
+
+.left {
+  text-align: left;
+  position: relative;
+}
+
+/* === Calculator ========================================================== */
+
+.inputCalc {
+  text-align: right;
+  width: 181px;
+
+  &#firstValue {
+    margin-right: 9px;
+  }
+}
+
+.signCalc {
+  text-align: center;
+  text-align-last: center;
+  width: 40px;
+  margin-right: 9px;
+}
+
+.gap {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem auto;
+  padding: .5rem;
+}
+
+.outputCalc {
+  padding: 0 .5rem;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  border: 1px solid #ccc;
+  width: 400px;
+  font-family: Monospace;
+}
+
+/* === Slug ================================================================ */
+
+.inputSlug {
+  background: #eee;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.buttonSlug {
+  background: #eee;
+}
+
+/* === RGB2Hex ============================================================= */
+
+.rgb-table {
+  border: none;
+  border-spacing: 0;
+}
+
+.rgb-label {
+  display: inline-block;
+  width: 85px;
+  text-align: left;
+
+  &.left-block {
+    transform: translateY(-50%) rotate(-90deg);
+    left: -19px;
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    text-align: center;
+    border-bottom: 1px dotted #ccc;
+    background-color: #f2f2f2;
+
+    ~.rgbValue,
+    ~.hexValue {
+      padding-left: 2rem;
+    }
+  }
+
+  &.block {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: .5rem 0;
+  }
+}
+
+.rgbValue,
+.hexValue,
+.example-bg {
+  border: 1px dotted #ccc;
+  display: inline-block;
+  width: 300px;
+}
+
+.example-bg {
+  width: 66px;
+}
