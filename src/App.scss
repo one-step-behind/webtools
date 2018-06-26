@@ -1,11 +1,27 @@
+/* === Variables =========================================================== */
+// === Grid
+$fg-columns: 10;
+$fg-gutter: 1rem;
+$grid-ns: 'wt-grid';
+$fg-class-row: '#{$grid-ns}-row';
+$fg-class-col: '#{$grid-ns}-col';
+$fg-class-off: '#{$grid-ns}-off';
+
+/* === General ============================================================= */
+
 .App {
   text-align: center;
   font-family: "Avenir Next", "American Typewriter", Arial, Helvetica, sans-serif;
 }
 
 .App-header {
-  background-color: #222;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  box-sizing: border-box;
   padding: 0 20px;
+  background-color: #222;
   color: white;
   text-align: right;
 }
@@ -18,10 +34,11 @@
 }
 
 .App-intro {
+  margin-top: 5rem;
   padding: 0 20px;
 }
 
-/* ============================================================= */
+/* ========================================================================= */
 
 h1 {
   margin: 0;
@@ -60,6 +77,29 @@ select {
 .left {
   text-align: left;
   position: relative;
+}
+
+/* === Utilities =========================================================== */
+
+.util-m-t-0 {
+  margin-top: 0 !important;
+}
+
+.util-m-y-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.util-p-t-0 {
+  padding-top: 0 !important;
+}
+
+.util-p-t-1 {
+  padding-top: $fg-gutter !important;
+}
+
+.util-p-b-2 {
+  padding-bottom: $fg-gutter * 2 !important;
 }
 
 /* === Calculator ========================================================== */
@@ -149,9 +189,12 @@ select {
 .example-bg {
   border: 1px dotted #ccc;
   display: inline-block;
-  width: 300px;
+  width: 100%;
 }
 
 .example-bg {
   width: 66px;
 }
+
+/* === Grid ================================================================ */
+@import "scss-flex-grid/flex-grid";

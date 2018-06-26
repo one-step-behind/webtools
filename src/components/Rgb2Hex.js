@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 
 import classNames from 'classnames';
 
-const fieldsCount = 5;
+const fieldsCount = 10;
 
 class Rgb2Hex extends PureComponent {
   constructor(props) {
@@ -19,8 +19,8 @@ class Rgb2Hex extends PureComponent {
     let rgbValues = [];
     let hexValues = [];
 
+    /* read local storage rgb value if exists and generate hex value */
     for (let i = 0; i < fieldsCount; i++) {
-      /* read local storage rgb value if exists and generate hex value */
       let lsItem = localStorage.getItem('rgb-'+i);
 
       if (lsItem) {
@@ -67,7 +67,6 @@ class Rgb2Hex extends PureComponent {
   };
 
   rgb2hex = (rgbValue, index) => {
-    console.log('rgbValue', rgbValue, index);
     let rgb = rgbValue.match(/^(\d+),\s*(\d+),\s*(\d+)$/);
 
     if (rgb) {
@@ -176,41 +175,41 @@ class Rgb2Hex extends PureComponent {
     return NaN;
   };
 
-  renderCol = (col) => {
+  renderCell = (col) => {
     const inputLabelClasses = classNames('rgb-label', {
       'left-block': fieldsCount > 3,
     });
 
-    const exampleLabelClasses = classNames('rgb-label', {
+    const exampleLabelClasses = classNames('rgb-label util-p-t-0', {
       'block': fieldsCount > 3,
     });
 
     return (
-      <td key={`table-col-${col}`} style={{ paddingRight: '20px' }}>
-        <p className="left">
+      <div key={`table-col-${col}`} className="wt-grid-col-lg-2 util-p-t-1 util-p-b-2">
+        <p className="left util-m-t-0">
           <label className={inputLabelClasses}>RGB{fieldsCount < 4 && ':'}</label>
           <input
             type="text"
             name={`rgbValue-${col}`}
             id={`rgbValue-${col}`}
-            value={this.state.rgbValues[col]}
+            value={this.state.rgbValues[col] || ''}
             className="rgbValue"
             onChange={this.changeRgb2hex}
             ref={input => { this[`rgbInput${col}`] = input; }}
           />
         </p>
-        <p className="left">
+        <p className="left util-m-t-0">
           <label className={inputLabelClasses}>Hex{fieldsCount < 4 && ':'}</label>
           <input
             name={`hexValue-${col}`}
             id={`hexValue-${col}`}
-            value={this.state.hexValues[col]}
+            value={this.state.hexValues[col] || ''}
             className="hexValue"
             onChange={this.changeHex2rgb}
             ref={input => { this[`hexInput${col}`] = input; }}
           />
         </p>
-        <p className="left">
+        <p className="left util-m-y-0">
           <label className={exampleLabelClasses}>Example:</label>
           <input
               id={`example-bg-${col}`}
@@ -222,7 +221,7 @@ class Rgb2Hex extends PureComponent {
             className="example-text"
             ref={text => { this[`exampleText${col}`] = text; }}>Lorem ipsum sample text</span>
         </p>
-      </td>
+      </div>
     );
   };
 
@@ -230,26 +229,19 @@ class Rgb2Hex extends PureComponent {
     //const columns = Array.from(Array(fieldsCount)).map((e, i) => i + 1); // 1 indexed
     const columns = [...Array(fieldsCount).keys()]; // 0 indexed
 
-    console.log(this.state);
-
     return (
       <React.Fragment>
         <h1>RGB to Hex to RGB</h1>
 
-        <table className="rgb-table">
-          <tbody>
-          <tr>
-            {columns.map(x => this.renderCol(x))}
-          </tr>
-          </tbody>
-        </table>
+        <div className="wt-grid-row">
+          {columns.map(x => this.renderCell(x))}
+        </div>
 
       </React.Fragment>
     );
   }
 }
 
-Rgb2Hex.propTypes = {
-};
+Rgb2Hex.propTypes = {};
 
 export default Rgb2Hex;

@@ -1,10 +1,17 @@
+/* === Variables =========================================================== */
+/* === General ============================================================= */
 .App {
   text-align: center;
   font-family: "Avenir Next", "American Typewriter", Arial, Helvetica, sans-serif; }
 
 .App-header {
-  background-color: #222;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  box-sizing: border-box;
   padding: 0 20px;
+  background-color: #222;
   color: white;
   text-align: right; }
 
@@ -15,9 +22,10 @@
   margin-top: .4rem; }
 
 .App-intro {
+  margin-top: 5rem;
   padding: 0 20px; }
 
-/* ============================================================= */
+/* ========================================================================= */
 h1 {
   margin: 0;
   padding: 1rem 0; }
@@ -48,6 +56,23 @@ select {
 .left {
   text-align: left;
   position: relative; }
+
+/* === Utilities =========================================================== */
+.util-m-t-0 {
+  margin-top: 0 !important; }
+
+.util-m-y-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important; }
+
+.util-p-t-0 {
+  padding-top: 0 !important; }
+
+.util-p-t-1 {
+  padding-top: 1rem !important; }
+
+.util-p-b-2 {
+  padding-bottom: 2rem !important; }
 
 /* === Calculator ========================================================== */
 .inputCalc {
@@ -117,7 +142,322 @@ select {
 .example-bg {
   border: 1px dotted #ccc;
   display: inline-block;
-  width: 300px; }
+  width: 100%; }
 
 .example-bg {
   width: 66px; }
+
+/* === Grid ================================================================ */
+/**
+ * Flex Grid -
+ * Version: 0.3.5
+ *
+ * Simple grid built with flex box and sass.
+ *
+ * Matthew Simo - matthew.a.simo@gmail.com
+ */
+/**
+ * Grid setup
+ *
+ * The grid will calculate dimensions based on these two variables:
+ * $fg-columns will inform the grid loops how many columns there should be.
+ * $fg-gutter will inform the grid loops how big eac column's gutters should be.
+ *
+ * The grid will name columns, rows, offsets based on these three variables:
+ * $fg-class-row string used for the row class
+ * $fg-class-col string used for the column class
+ * $fg-class-off string used for the offset class
+ */
+/**
+ * Break point namespace object
+ *
+ * Set the default namespace object with these defaults with the
+ * understanding that you can pass in whatever you might require for your site.
+ *
+ * $fg-breakpoints is a Sass list with nested lists inside. Each sub list defines two things.
+ * 1. The namespace for that breakpoint. (Required) (i.e. xs, sm, md, lg)
+ * 2. The min-width measurement for the breakpoint for that namespace. (i.e. 48em, 62em, 75em)
+ *
+ * Note: These should be in the proper order (at least till libsass handles map keys properly).
+ *
+ * Note: If the measurement is left out then it will be skipped when generating
+ * the grid and applied to global styles.
+ *
+ */
+/**
+ * Class Name Defaults
+ *
+ * Define class names for columns, rows and offsets in case compatibility with other
+ * libraries is necessary.
+
+
+/**
+ * Calculate column size percentage
+ */
+/**
+ * Spacing mixin to create uniform margin/padding
+ */
+/**
+ * Row wrapper class, flex box parent.
+ */
+.wt-grid-row {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -1rem;
+  margin-right: -1rem; }
+
+.wt-grid-col-xs, .wt-grid-col-sm, .wt-grid-col-md, .wt-grid-col-lg, .wt-grid-col-xs-1, .wt-grid-col-xs-2, .wt-grid-col-xs-3, .wt-grid-col-xs-4, .wt-grid-col-xs-5, .wt-grid-col-xs-6, .wt-grid-col-xs-7, .wt-grid-col-xs-8, .wt-grid-col-xs-9, .wt-grid-col-xs-10, .wt-grid-col-sm-1, .wt-grid-col-sm-2, .wt-grid-col-sm-3, .wt-grid-col-sm-4, .wt-grid-col-sm-5, .wt-grid-col-sm-6, .wt-grid-col-sm-7, .wt-grid-col-sm-8, .wt-grid-col-sm-9, .wt-grid-col-sm-10, .wt-grid-col-md-1, .wt-grid-col-md-2, .wt-grid-col-md-3, .wt-grid-col-md-4, .wt-grid-col-md-5, .wt-grid-col-md-6, .wt-grid-col-md-7, .wt-grid-col-md-8, .wt-grid-col-md-9, .wt-grid-col-md-10, .wt-grid-col-lg-1, .wt-grid-col-lg-2, .wt-grid-col-lg-3, .wt-grid-col-lg-4, .wt-grid-col-lg-5, .wt-grid-col-lg-6, .wt-grid-col-lg-7, .wt-grid-col-lg-8, .wt-grid-col-lg-9, .wt-grid-col-lg-10 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-height: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+.wt-grid-col-xs, .wt-grid-col-sm, .wt-grid-col-md, .wt-grid-col-lg {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%; }
+
+/**
+ * Generate a set of grid column classes using a namespace
+ *
+ * .wt-grid-col-[namespace] for intelligent column division
+ * .wt-grid-col-[namespace]-[number] for a column that covers a specific number of columns (e.g. 1-12 by default)
+ * .wt-grid-off-[namespace]-[number] for pushing a col a specific number of columns (e.g. 1-11 by default)
+ * .wt-grid-off-[namespace]-reset for resetting a col's offset for that and larger namespaces
+ */
+/**
+ * Build the grid in two steps, to help minimize file size
+ * Step 1, for each namespace, create the grid-base
+ * Step 2, for each namespace, wrap the col width/offset measurements in their breakpoint media query
+ */
+.wt-grid-col-xs-1 {
+  flex-basis: 10%;
+  max-width: 10%; }
+
+.wt-grid-col-xs-2 {
+  flex-basis: 20%;
+  max-width: 20%; }
+
+.wt-grid-col-xs-3 {
+  flex-basis: 30%;
+  max-width: 30%; }
+
+.wt-grid-col-xs-4 {
+  flex-basis: 40%;
+  max-width: 40%; }
+
+.wt-grid-col-xs-5 {
+  flex-basis: 50%;
+  max-width: 50%; }
+
+.wt-grid-col-xs-6 {
+  flex-basis: 60%;
+  max-width: 60%; }
+
+.wt-grid-col-xs-7 {
+  flex-basis: 70%;
+  max-width: 70%; }
+
+.wt-grid-col-xs-8 {
+  flex-basis: 80%;
+  max-width: 80%; }
+
+.wt-grid-col-xs-9 {
+  flex-basis: 90%;
+  max-width: 90%; }
+
+.wt-grid-col-xs-10 {
+  flex-basis: 100%;
+  max-width: 100%; }
+
+.wt-grid-off-xs-1 {
+  margin-left: 10%; }
+
+.wt-grid-off-xs-2 {
+  margin-left: 20%; }
+
+.wt-grid-off-xs-3 {
+  margin-left: 30%; }
+
+.wt-grid-off-xs-4 {
+  margin-left: 40%; }
+
+.wt-grid-off-xs-5 {
+  margin-left: 50%; }
+
+.wt-grid-off-xs-6 {
+  margin-left: 60%; }
+
+.wt-grid-off-xs-7 {
+  margin-left: 70%; }
+
+.wt-grid-off-xs-8 {
+  margin-left: 80%; }
+
+.wt-grid-off-xs-9 {
+  margin-left: 90%; }
+
+.wt-grid-off-xs-reset {
+  margin-left: 0; }
+
+@media only screen and (min-width: 768px) {
+  .wt-grid-col-sm-1 {
+    flex-basis: 10%;
+    max-width: 10%; }
+  .wt-grid-col-sm-2 {
+    flex-basis: 20%;
+    max-width: 20%; }
+  .wt-grid-col-sm-3 {
+    flex-basis: 30%;
+    max-width: 30%; }
+  .wt-grid-col-sm-4 {
+    flex-basis: 40%;
+    max-width: 40%; }
+  .wt-grid-col-sm-5 {
+    flex-basis: 50%;
+    max-width: 50%; }
+  .wt-grid-col-sm-6 {
+    flex-basis: 60%;
+    max-width: 60%; }
+  .wt-grid-col-sm-7 {
+    flex-basis: 70%;
+    max-width: 70%; }
+  .wt-grid-col-sm-8 {
+    flex-basis: 80%;
+    max-width: 80%; }
+  .wt-grid-col-sm-9 {
+    flex-basis: 90%;
+    max-width: 90%; }
+  .wt-grid-col-sm-10 {
+    flex-basis: 100%;
+    max-width: 100%; }
+  .wt-grid-off-sm-1 {
+    margin-left: 10%; }
+  .wt-grid-off-sm-2 {
+    margin-left: 20%; }
+  .wt-grid-off-sm-3 {
+    margin-left: 30%; }
+  .wt-grid-off-sm-4 {
+    margin-left: 40%; }
+  .wt-grid-off-sm-5 {
+    margin-left: 50%; }
+  .wt-grid-off-sm-6 {
+    margin-left: 60%; }
+  .wt-grid-off-sm-7 {
+    margin-left: 70%; }
+  .wt-grid-off-sm-8 {
+    margin-left: 80%; }
+  .wt-grid-off-sm-9 {
+    margin-left: 90%; }
+  .wt-grid-off-sm-reset {
+    margin-left: 0; } }
+
+@media only screen and (min-width: 992px) {
+  .wt-grid-col-md-1 {
+    flex-basis: 10%;
+    max-width: 10%; }
+  .wt-grid-col-md-2 {
+    flex-basis: 20%;
+    max-width: 20%; }
+  .wt-grid-col-md-3 {
+    flex-basis: 30%;
+    max-width: 30%; }
+  .wt-grid-col-md-4 {
+    flex-basis: 40%;
+    max-width: 40%; }
+  .wt-grid-col-md-5 {
+    flex-basis: 50%;
+    max-width: 50%; }
+  .wt-grid-col-md-6 {
+    flex-basis: 60%;
+    max-width: 60%; }
+  .wt-grid-col-md-7 {
+    flex-basis: 70%;
+    max-width: 70%; }
+  .wt-grid-col-md-8 {
+    flex-basis: 80%;
+    max-width: 80%; }
+  .wt-grid-col-md-9 {
+    flex-basis: 90%;
+    max-width: 90%; }
+  .wt-grid-col-md-10 {
+    flex-basis: 100%;
+    max-width: 100%; }
+  .wt-grid-off-md-1 {
+    margin-left: 10%; }
+  .wt-grid-off-md-2 {
+    margin-left: 20%; }
+  .wt-grid-off-md-3 {
+    margin-left: 30%; }
+  .wt-grid-off-md-4 {
+    margin-left: 40%; }
+  .wt-grid-off-md-5 {
+    margin-left: 50%; }
+  .wt-grid-off-md-6 {
+    margin-left: 60%; }
+  .wt-grid-off-md-7 {
+    margin-left: 70%; }
+  .wt-grid-off-md-8 {
+    margin-left: 80%; }
+  .wt-grid-off-md-9 {
+    margin-left: 90%; }
+  .wt-grid-off-md-reset {
+    margin-left: 0; } }
+
+@media only screen and (min-width: 1200px) {
+  .wt-grid-col-lg-1 {
+    flex-basis: 10%;
+    max-width: 10%; }
+  .wt-grid-col-lg-2 {
+    flex-basis: 20%;
+    max-width: 20%; }
+  .wt-grid-col-lg-3 {
+    flex-basis: 30%;
+    max-width: 30%; }
+  .wt-grid-col-lg-4 {
+    flex-basis: 40%;
+    max-width: 40%; }
+  .wt-grid-col-lg-5 {
+    flex-basis: 50%;
+    max-width: 50%; }
+  .wt-grid-col-lg-6 {
+    flex-basis: 60%;
+    max-width: 60%; }
+  .wt-grid-col-lg-7 {
+    flex-basis: 70%;
+    max-width: 70%; }
+  .wt-grid-col-lg-8 {
+    flex-basis: 80%;
+    max-width: 80%; }
+  .wt-grid-col-lg-9 {
+    flex-basis: 90%;
+    max-width: 90%; }
+  .wt-grid-col-lg-10 {
+    flex-basis: 100%;
+    max-width: 100%; }
+  .wt-grid-off-lg-1 {
+    margin-left: 10%; }
+  .wt-grid-off-lg-2 {
+    margin-left: 20%; }
+  .wt-grid-off-lg-3 {
+    margin-left: 30%; }
+  .wt-grid-off-lg-4 {
+    margin-left: 40%; }
+  .wt-grid-off-lg-5 {
+    margin-left: 50%; }
+  .wt-grid-off-lg-6 {
+    margin-left: 60%; }
+  .wt-grid-off-lg-7 {
+    margin-left: 70%; }
+  .wt-grid-off-lg-8 {
+    margin-left: 80%; }
+  .wt-grid-off-lg-9 {
+    margin-left: 90%; }
+  .wt-grid-off-lg-reset {
+    margin-left: 0; } }
