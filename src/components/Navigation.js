@@ -6,16 +6,16 @@ const Navigation = ({
   onClickNavigation,
 }) => (
   <ul className="navigation">
-    <li className={selectedPage === 'calculator' ? 'is-selected' : 'false'} onClick={onClickNavigation} data-link="calculator">
+    <li className={selectedPage === 'calculator' ? 'is-selected' : null} onClick={onClickNavigation} data-link="calculator">
       Instant calculator
     </li>
-    <li className={selectedPage === 'rgb2hex' ? 'is-selected' : 'false'} onClick={onClickNavigation} data-link="rgb2hex">
+    <li className={selectedPage === 'rgb2hex' ? 'is-selected' : null} onClick={onClickNavigation} data-link="rgb2hex">
       RGB to Hex to RGB
     </li>
-    <li className={selectedPage === 'slug' ? 'is-selected' : 'false'} onClick={onClickNavigation} data-link="slug">
+    <li className={selectedPage === 'slug' ? 'is-selected' : null} onClick={onClickNavigation} data-link="slug">
       Slug
     </li>
-    <li className={selectedPage === 'base64' ? 'is-selected' : 'false'} onClick={onClickNavigation} data-link="base64">
+    <li className={selectedPage === 'base64' ? 'is-selected' : null} onClick={onClickNavigation} data-link="base64">
       Base64 Decode/Encode
     </li>
   </ul>

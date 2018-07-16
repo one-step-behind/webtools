@@ -36,7 +36,7 @@ class Slug extends PureComponent {
     return (
       <React.Fragment>
         <h1>Slug</h1>
-        <p>The part of an URL which identifies a page using human-readable keywords.
+        <p className="subheader">The part of an URL which identifies a page using human-readable keywords.
           Input a string of text and slugify it.</p>
 
         <div className="gap">

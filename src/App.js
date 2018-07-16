@@ -14,31 +14,53 @@ class App extends PureComponent {
 
     this.state = {
       selectedPage: 'calculator',
+      selectedSubPage: 'decode'
     };
 
     this.onClickNavigation = this.onClickNavigation.bind(this);
+    this.onClickSubNavigation = this.onClickSubNavigation.bind(this);
   }
 
   componentDidMount() {
     let lastPage = localStorage.getItem('lastPage');
+    let lastSubPage = localStorage.getItem('lastSubPage');
 
     if (lastPage) {
       this.setState({
         selectedPage: lastPage,
+        selectedSubPage: lastSubPage,
       });
     }
   }
 
   onClickNavigation(event) {
+    const lastPage = event.target.dataset.link;
+
     this.setState({
-      selectedPage: event.target.dataset.link,
+      selectedPage: lastPage,
     });
 
     /* save last called page to local storage */
-    localStorage.setItem('lastPage', event.target.dataset.link);
+    localStorage.setItem('lastPage', lastPage);
+  }
+
+  onClickSubNavigation(event) {
+    const lastSubPage = event.target.dataset.link;
+
+    this.setState({
+      selectedSubPage: lastSubPage,
+    });
+
+    /* save last called page to local storage */
+    localStorage.setItem('lastSubPage', lastSubPage);
   }
 
   render() {
+    const {
+      selectedPage,
+      selectedSubPage,
+    } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -46,13 +68,16 @@ class App extends PureComponent {
             {/*<img src={logo} className="App-logo" alt="logo" />*/}
             Webtools
           </h1>
-          <Navigation selectedPage={this.state.selectedPage} onClickNavigation={this.onClickNavigation} />
+          <Navigation selectedPage={selectedPage} onClickNavigation={this.onClickNavigation} />
         </header>
         <div className="App-intro">
-          { this.state.selectedPage === 'calculator' && <Calculator /> }
-          { this.state.selectedPage === 'rgb2hex' && <Rgb2Hex /> }
-          { this.state.selectedPage === 'slug' && <Slug /> }
-          { this.state.selectedPage === 'base64' && <Base64 /> }
+          { selectedPage === 'calculator' && <Calculator /> }
+          { selectedPage === 'rgb2hex' && <Rgb2Hex /> }
+          { selectedPage === 'slug' && <Slug /> }
+          {
+            selectedPage === 'base64' &&
+            <Base64 selectedSubPage={selectedSubPage} onClickSubNavigation={this.onClickSubNavigation} />
+          }
         </div>
       </div>
     );
