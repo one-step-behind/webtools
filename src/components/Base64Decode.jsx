@@ -23,14 +23,6 @@ class Base64Decode extends PureComponent {
         liveMode: true,
       });
     }
-
-/*
-      textInput.addEventListener('input change keyup mouseup', () => {
-        if (this.state.liveMode) {
-          this.liveParse()
-        }
-      })
-*/
   };
 
   toggleLiveMode = () => {
@@ -126,9 +118,9 @@ class Base64Decode extends PureComponent {
           name="input"
           placeholder="Type (or paste) here..."
           value={this.state.inputValue}
-          //onInput={this.liveParse()}
+          //onInput={this.liveParse}
           onChange={this.liveParse}
-          //onKeyUp={this.liveParse}
+          onKeyUp={this.liveParse}
           //onMouseUp={this.liveParse()}
         />
 
@@ -136,6 +128,7 @@ class Base64Decode extends PureComponent {
           <i className="fa fa-chevron-left" /> DECODE <i className="fa fa-chevron-right" />
         </button>
 
+        <div>You may also select input charset.</div>
         <span className="select-wrapper">
           <i className="fa fa-chevron-down" />
           <select name="charset">
@@ -149,7 +142,6 @@ class Base64Decode extends PureComponent {
             <option value="Windows-1252">Windows-1252</option>
           </select>
         </span>
-        <span>You may also select input charset.</span>
 
         <div className="live">
           <span className={`toggle${this.state.liveMode ? ' on': ''}`} onClick={this.toggleLiveMode}>
@@ -158,7 +150,7 @@ class Base64Decode extends PureComponent {
           </span>
           <span> (Decodes while you type or paste (strict format).)</span>
 
-          <div className="note">Note that decoding of binary data (like images, documents, etc.) does not work in live mode.</div>
+          {/*<div className="note">Note that decoding of binary data (like images, documents, etc.) does not work in live mode.</div>*/}
         </div>
 
         <textarea
