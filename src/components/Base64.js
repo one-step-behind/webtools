@@ -15,9 +15,9 @@ class Base64 extends PureComponent {
       <React.Fragment>
         <h1>
           Base64{' '}
-          <span className={`subPage ${selectedSubPage === 'decode' && 'is-selected'}`} onClick={onClickSubNavigation} data-link="decode">Decode <i className="fa fa-folder-open-o" /></span>
-          /
-          <span className={`subPage ${selectedSubPage === 'encode' && 'is-selected'}`} onClick={onClickSubNavigation} data-link="encode">Encode <i className="fa fa-folder-o" /></span>
+          <span className={`sub-page-link ${selectedSubPage === 'decode' && 'is-selected'}`} onClick={onClickSubNavigation} data-link="decode">Decode</span>
+          {' '}/{' '}
+          <span className={`sub-page-link ${selectedSubPage === 'encode' && 'is-selected'}`} onClick={onClickSubNavigation} data-link="encode">Encode</span>
         </h1>
 
         {

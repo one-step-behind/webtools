@@ -110,52 +110,63 @@ class Base64Decode extends PureComponent {
   render() {
     return (
       <React.Fragment>
-        <p className="subheader">Simply use the form below</p>
+        <p className="subheader">Put your base64 <strong>encoded</strong> text into the first textarea.</p>
 
-        <textarea
-          name="input"
-          placeholder="Type (or paste) here..."
-          value={this.state.inputValue}
-          //onInput={this.liveParse}
-          onChange={this.liveParse}
-          onKeyUp={this.liveParse}
-          //onMouseUp={this.liveParse()}
-        />
+        <div className="wt-grid-row">
+          <div className="wt-grid-col-lg-10 util-p-t-1 util-p-b-1">
+            <textarea
+              name="input"
+              placeholder="Type (or paste) here..."
+              value={this.state.inputValue}
+              //onInput={this.liveParse}
+              onChange={this.liveParse}
+              onKeyUp={this.liveParse}
+              //onMouseUp={this.liveParse()}
+            />
+          </div>
 
-        <button name="decode" value="decode" className="buttonSlug" onClick={this.onClick}>
-          <i className="fa fa-chevron-left" /> DECODE <i className="fa fa-chevron-right" />
-        </button>
+          <div className="wt-grid-col-lg-2 wt-grid-off-lg-2 util-p-t-1 util-p-b-1">
+            <button name="decode" value="decode" className="buttonSlug" onClick={this.onClick}>
+              <i className="fa fa-chevron-left" /> DECODE <i className="fa fa-chevron-right" />
+            </button>
+          </div>
 
-        <div>You may also select input charset.</div>
-        <span className="select-wrapper">
-          <i className="fa fa-chevron-down" />
-          <select name="charset">
-            <option value="UTF-8">UTF-8</option>
-            <option value="ASCII">ASCII</option>
-            <option value="CP1256">CP1256</option>
-            <option value="ISO-8859-1">ISO-8859-1</option>
-            <option value="ISO-8859-2">ISO-8859-2</option>
-            <option value="ISO-8859-6">ISO-8859-6</option>
-            <option value="ISO-8859-15">ISO-8859-15</option>
-            <option value="Windows-1252">Windows-1252</option>
-          </select>
-        </span>
+          <div className="wt-grid-col-lg-2 util-p-t-1 util-p-b-1">
+            <span className="select-wrapper">
+              <i className="fa fa-chevron-down" />
+              <select name="charset">
+                <option value="UTF-8">UTF-8</option>
+                <option value="ASCII">ASCII</option>
+                <option value="CP1256">CP1256</option>
+                <option value="ISO-8859-1">ISO-8859-1</option>
+                <option value="ISO-8859-2">ISO-8859-2</option>
+                <option value="ISO-8859-6">ISO-8859-6</option>
+                <option value="ISO-8859-15">ISO-8859-15</option>
+                <option value="Windows-1252">Windows-1252</option>
+              </select>
+            </span>
+            <div>You may also select input charset.</div>
+          </div>
 
-        <div className="live">
-          <span className={`toggle${this.state.liveMode ? ' on': ''}`} onClick={this.toggleLiveMode}>
-            <i className={`fa fa-toggle-${this.state.liveMode ? 'on on': 'off'}`} />
-            {' '}Live mode {this.state.liveMode ? 'ON' : 'OFF'}
-          </span>
-          <span> (Decodes while you type or paste (strict format).)</span>
+          <div className="wt-grid-col-lg-2 util-p-t-1 util-p-b-1">
+            <div className="live">
+              <span className={`toggle${this.state.liveMode ? ' on': ''}`} onClick={this.toggleLiveMode}>
+                <i className={`fa fa-toggle-${this.state.liveMode ? 'on on': 'off'}`} />
+                {' '}Live mode {this.state.liveMode ? 'ON' : 'OFF'}
+              </span>
+              <div>Decodes while you type or paste (strict format).</div>
+              {/*<div className="note">Note that decoding of binary data (like images, documents, etc.) does not work in live mode.</div>*/}
+            </div>
+          </div>
 
-          {/*<div className="note">Note that decoding of binary data (like images, documents, etc.) does not work in live mode.</div>*/}
+          <div className="wt-grid-col-lg-10 util-p-t-1 util-p-b-2">
+            <textarea
+              name="output"
+              placeholder="Result goes here..."
+              value={this.state.outputValue}
+            />
+          </div>
         </div>
-
-        <textarea
-          name="output"
-          placeholder="Result goes here..."
-          value={this.state.outputValue}
-        />
 
         <div className="wiki">
           <h3><i className="fa fa-question-circle-o" /> Details of the encoding</h3>

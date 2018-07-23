@@ -90,6 +90,10 @@ select {
     right: .5rem;
     top: 1rem;
   }
+
+  > select {
+    width: 100%;
+  }
 }
 
 textarea {
@@ -97,7 +101,6 @@ textarea {
   width: 100%;
   height: 200px;
   border: 1px solid rgb(204, 204, 204);
-  margin: $fg-gutter 0;
   padding: ($fg-gutter / 2);
   display: block;
   position: relative;
@@ -245,10 +248,12 @@ textarea {
   background-color: #f2f2f2;
 }
 
-.subPage {
+.sub-page-link {
   text-decoration: underline;
+  cursor: pointer;
 
   &.is-selected {
+    text-decoration: none;
     color: #7acc0c;
   }
 }

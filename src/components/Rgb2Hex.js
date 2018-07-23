@@ -240,6 +240,7 @@ class Rgb2Hex extends PureComponent {
     return (
       <React.Fragment>
         <h1>RGB to Hex to RGB</h1>
+        <p className="subheader">Fill in either RGB or Hex values</p>
 
         <div className="wt-grid-row">
           {columns.map(x => this.renderCell(x))}
