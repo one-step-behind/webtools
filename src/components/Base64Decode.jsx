@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react';
 
 import { reactLocalStorage } from 'reactjs-localstorage';
 
+const COOKIE_NAME = 'B64DLIVE';
+
 class Base64Decode extends PureComponent {
   constructor(props) {
     super(props);
@@ -15,8 +17,7 @@ class Base64Decode extends PureComponent {
   }
 
   componentDidMount = () => {
-    const CookieName = 'B64DLIVE';
-    const cookie = reactLocalStorage.get(CookieName);
+    const cookie = reactLocalStorage.get(COOKIE_NAME);
 
     if (cookie !== "undefined" && cookie === "on") {
       this.setState({
@@ -34,9 +35,7 @@ class Base64Decode extends PureComponent {
   };
 
   liveEnable = () => {
-    let CookieName = 'B64DLIVE';
-
-    reactLocalStorage.set(CookieName, 'on');
+    reactLocalStorage.set(COOKIE_NAME, 'on');
 
     this.setState({
       liveMode: true,
@@ -45,7 +44,6 @@ class Base64Decode extends PureComponent {
 
   liveDisable = () => {
     let textOutput = document.querySelector('textarea[name="output"]');
-    let CookieName = 'B64DLIVE';
 
     this.setState({
       liveMode: false,
@@ -53,7 +51,7 @@ class Base64Decode extends PureComponent {
     });
 
     textOutput.classList.remove('error');
-    reactLocalStorage.set(CookieName, 'off');
+    reactLocalStorage.set(COOKIE_NAME, 'off');
   };
 
   liveParse = (e) => {

@@ -57,8 +57,12 @@ class Rgb2Hex extends PureComponent {
     let [...hexValues] = this.state.hexValues;
     hexValues[targetIndex] = this.rgb2hex(e.value, targetIndex);
 
-    /* save rgb value to local storage */
-    localStorage.setItem('rgb-'+targetIndex, e.value);
+    /* Save or delete rgb value to/from local storage */
+    if (e.value !== '') {
+      localStorage.setItem('rgb-' + targetIndex, e.value);
+    } else {
+      localStorage.removeItem('rgb-' + targetIndex);
+    }
 
     this.setState({
       rgbValues,
@@ -105,8 +109,12 @@ class Rgb2Hex extends PureComponent {
     let [...hexValues] = this.state.hexValues;
     hexValues[targetIndex] = e.target.value;
 
-    /* save rgb value to local storage */
-    localStorage.setItem('rgb-'+targetIndex, rgbValues[targetIndex]);
+    /* Save or remove rgb value to/from local storage */
+    if (rgbValues[targetIndex] !== '') {
+      localStorage.setItem('rgb-' + targetIndex, rgbValues[targetIndex]);
+    } else {
+      localStorage.removeItem('rgb-' + targetIndex);
+    }
 
     this.setState({
       rgbValues,
