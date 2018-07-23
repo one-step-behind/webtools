@@ -53,7 +53,7 @@ select {
   padding: 0 0.5rem;
   font-size: 2.5rem;
   line-height: 4rem;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   border-radius: 0;
   appearance: none;
   font-family: Monospace; }
@@ -73,21 +73,20 @@ textarea {
   color: black;
   width: 100%;
   height: 200px;
-  border: 1px solid #cccccc;
+  border: 1px solid #bbb;
   padding: 0.5rem;
   display: block;
   position: relative;
   overflow: auto;
-  font-size: 13px;
   box-sizing: border-box;
-  font-style: normal;
+  font-style: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
   text-align: left;
-  font-family: 'Arial';
-  font-weight: normal;
   line-height: normal;
   background-color: #eeeeee;
   resize: none;
-  outline: 0;
   -webkit-tap-highlight-color: transparent; }
 
 .left {
@@ -124,25 +123,20 @@ textarea {
   width: 40px;
   margin-right: 9px; }
 
-.gap {
-  font-size: 2rem;
-  text-align: center;
-  margin: 2rem auto;
-  padding: .5rem; }
-
 .outputCalc {
   padding: 0 .5rem;
   font-size: 2.5rem;
   line-height: 4rem;
-  border: 1px solid #ccc;
-  width: 400px;
-  font-family: Monospace; }
+  border: 1px solid #bbb;
+  width: 420px;
+  font-family: Monospace;
+  display: inline-block;
+  text-align: center; }
 
 /* === Slug ================================================================ */
 .inputSlug {
   background: #eee;
-  width: 100%;
-  margin-bottom: 1em; }
+  width: 100%; }
 
 .buttonSlug {
   background: #eee; }
@@ -163,8 +157,8 @@ textarea {
     top: 50%;
     width: 64px;
     text-align: center;
-    border-bottom: 1px dotted #ccc;
-    background-color: #f2f2f2; }
+    border-bottom: 1px dotted #bbb;
+    background-color: #eee; }
     .rgb-label.left-block ~ .rgbValue,
     .rgb-label.left-block ~ .hexValue {
       padding-left: 2rem; }
@@ -177,7 +171,7 @@ textarea {
 .rgbValue,
 .hexValue,
 .example-bg {
-  border: 1px dotted #ccc;
+  border: 1px dotted #bbb;
   display: inline-block;
   width: 100%; }
 
@@ -188,7 +182,7 @@ textarea {
 .wiki {
   text-align: left;
   padding: 1rem;
-  background-color: #f2f2f2; }
+  background-color: #eee; }
 
 .sub-page-link {
   text-decoration: underline;
@@ -198,319 +192,683 @@ textarea {
     color: #7acc0c; }
 
 /* === Grid ================================================================ */
-/**
- * Flex Grid -
- * Version: 0.3.5
- *
- * Simple grid built with flex box and sass.
- *
- * Matthew Simo - matthew.a.simo@gmail.com
- */
-/**
- * Grid setup
- *
- * The grid will calculate dimensions based on these two variables:
- * $fg-columns will inform the grid loops how many columns there should be.
- * $fg-gutter will inform the grid loops how big eac column's gutters should be.
- *
- * The grid will name columns, rows, offsets based on these three variables:
- * $fg-class-row string used for the row class
- * $fg-class-col string used for the column class
- * $fg-class-off string used for the offset class
- */
-/**
- * Break point namespace object
- *
- * Set the default namespace object with these defaults with the
- * understanding that you can pass in whatever you might require for your site.
- *
- * $fg-breakpoints is a Sass list with nested lists inside. Each sub list defines two things.
- * 1. The namespace for that breakpoint. (Required) (i.e. xs, sm, md, lg)
- * 2. The min-width measurement for the breakpoint for that namespace. (i.e. 48em, 62em, 75em)
- *
- * Note: These should be in the proper order (at least till libsass handles map keys properly).
- *
- * Note: If the measurement is left out then it will be skipped when generating
- * the grid and applied to global styles.
- *
- */
-/**
- * Class Name Defaults
- *
- * Define class names for columns, rows and offsets in case compatibility with other
- * libraries is necessary.
-
-
-/**
- * Calculate column size percentage
- */
-/**
- * Spacing mixin to create uniform margin/padding
- */
-/**
- * Row wrapper class, flex box parent.
- */
-.wt-grid-row {
+.row {
   box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  flex: 0 1 auto;
   flex-direction: row;
-  flex-wrap: wrap;
-  margin-left: -1rem;
-  margin-right: -1rem; }
+  flex-wrap: wrap; }
 
-.wt-grid-col-xs, .wt-grid-col-sm, .wt-grid-col-md, .wt-grid-col-lg, .wt-grid-col-xs-1, .wt-grid-col-xs-2, .wt-grid-col-xs-3, .wt-grid-col-xs-4, .wt-grid-col-xs-5, .wt-grid-col-xs-6, .wt-grid-col-xs-7, .wt-grid-col-xs-8, .wt-grid-col-xs-9, .wt-grid-col-xs-10, .wt-grid-col-sm-1, .wt-grid-col-sm-2, .wt-grid-col-sm-3, .wt-grid-col-sm-4, .wt-grid-col-sm-5, .wt-grid-col-sm-6, .wt-grid-col-sm-7, .wt-grid-col-sm-8, .wt-grid-col-sm-9, .wt-grid-col-sm-10, .wt-grid-col-md-1, .wt-grid-col-md-2, .wt-grid-col-md-3, .wt-grid-col-md-4, .wt-grid-col-md-5, .wt-grid-col-md-6, .wt-grid-col-md-7, .wt-grid-col-md-8, .wt-grid-col-md-9, .wt-grid-col-md-10, .wt-grid-col-lg-1, .wt-grid-col-lg-2, .wt-grid-col-lg-3, .wt-grid-col-lg-4, .wt-grid-col-lg-5, .wt-grid-col-lg-6, .wt-grid-col-lg-7, .wt-grid-col-lg-8, .wt-grid-col-lg-9, .wt-grid-col-lg-10 {
+.row.reverse {
+  flex-direction: row-reverse; }
+
+.row.natural-height {
+  align-items: flex-start; }
+
+.row.flex-column {
+  flex-direction: column; }
+
+.col {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  flex-shrink: 0;
-  min-height: 1px;
-  padding-left: 1rem;
-  padding-right: 1rem; }
-
-.wt-grid-col-xs, .wt-grid-col-sm, .wt-grid-col-md, .wt-grid-col-lg {
   flex-grow: 1;
   flex-basis: 0;
-  max-width: 100%; }
+  max-width: 100%;
+  padding: 1rem; }
 
-/**
- * Generate a set of grid column classes using a namespace
- *
- * .wt-grid-col-[namespace] for intelligent column division
- * .wt-grid-col-[namespace]-[number] for a column that covers a specific number of columns (e.g. 1-12 by default)
- * .wt-grid-off-[namespace]-[number] for pushing a col a specific number of columns (e.g. 1-11 by default)
- * .wt-grid-off-[namespace]-reset for resetting a col's offset for that and larger namespaces
- */
-/**
- * Build the grid in two steps, to help minimize file size
- * Step 1, for each namespace, create the grid-base
- * Step 2, for each namespace, wrap the col width/offset measurements in their breakpoint media query
- */
-.wt-grid-col-xs-1 {
+.col.reverse {
+  flex-direction: column-reverse; }
+
+.first {
+  order: -1; }
+
+.last {
+  order: 1; }
+
+.align-start {
+  align-self: flex-start; }
+
+.align-end {
+  align-self: flex-end; }
+
+.align-center {
+  align-self: center; }
+
+.align-baseline {
+  align-self: baseline; }
+
+.align-stretch {
+  align-self: stretch; }
+
+.col-xs {
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  padding: 1rem; }
+
+.col-xs-1 {
+  box-sizing: border-box;
   flex-basis: 10%;
-  max-width: 10%; }
+  max-width: 10%;
+  padding: 1rem; }
 
-.wt-grid-col-xs-2 {
-  flex-basis: 20%;
-  max-width: 20%; }
-
-.wt-grid-col-xs-3 {
-  flex-basis: 30%;
-  max-width: 30%; }
-
-.wt-grid-col-xs-4 {
-  flex-basis: 40%;
-  max-width: 40%; }
-
-.wt-grid-col-xs-5 {
-  flex-basis: 50%;
-  max-width: 50%; }
-
-.wt-grid-col-xs-6 {
-  flex-basis: 60%;
-  max-width: 60%; }
-
-.wt-grid-col-xs-7 {
-  flex-basis: 70%;
-  max-width: 70%; }
-
-.wt-grid-col-xs-8 {
-  flex-basis: 80%;
-  max-width: 80%; }
-
-.wt-grid-col-xs-9 {
-  flex-basis: 90%;
-  max-width: 90%; }
-
-.wt-grid-col-xs-10 {
-  flex-basis: 100%;
-  max-width: 100%; }
-
-.wt-grid-off-xs-1 {
+.col-xs-offset-1 {
   margin-left: 10%; }
 
-.wt-grid-off-xs-2 {
+.col-xs-2 {
+  box-sizing: border-box;
+  flex-basis: 20%;
+  max-width: 20%;
+  padding: 1rem; }
+
+.col-xs-offset-2 {
   margin-left: 20%; }
 
-.wt-grid-off-xs-3 {
+.col-xs-3 {
+  box-sizing: border-box;
+  flex-basis: 30%;
+  max-width: 30%;
+  padding: 1rem; }
+
+.col-xs-offset-3 {
   margin-left: 30%; }
 
-.wt-grid-off-xs-4 {
+.col-xs-4 {
+  box-sizing: border-box;
+  flex-basis: 40%;
+  max-width: 40%;
+  padding: 1rem; }
+
+.col-xs-offset-4 {
   margin-left: 40%; }
 
-.wt-grid-off-xs-5 {
+.col-xs-5 {
+  box-sizing: border-box;
+  flex-basis: 50%;
+  max-width: 50%;
+  padding: 1rem; }
+
+.col-xs-offset-5 {
   margin-left: 50%; }
 
-.wt-grid-off-xs-6 {
+.col-xs-6 {
+  box-sizing: border-box;
+  flex-basis: 60%;
+  max-width: 60%;
+  padding: 1rem; }
+
+.col-xs-offset-6 {
   margin-left: 60%; }
 
-.wt-grid-off-xs-7 {
+.col-xs-7 {
+  box-sizing: border-box;
+  flex-basis: 70%;
+  max-width: 70%;
+  padding: 1rem; }
+
+.col-xs-offset-7 {
   margin-left: 70%; }
 
-.wt-grid-off-xs-8 {
+.col-xs-8 {
+  box-sizing: border-box;
+  flex-basis: 80%;
+  max-width: 80%;
+  padding: 1rem; }
+
+.col-xs-offset-8 {
   margin-left: 80%; }
 
-.wt-grid-off-xs-9 {
+.col-xs-9 {
+  box-sizing: border-box;
+  flex-basis: 90%;
+  max-width: 90%;
+  padding: 1rem; }
+
+.col-xs-offset-9 {
   margin-left: 90%; }
 
-.wt-grid-off-xs-reset {
-  margin-left: 0; }
+.col-xs-10 {
+  box-sizing: border-box;
+  flex-basis: 100%;
+  max-width: 100%;
+  padding: 1rem; }
 
-@media only screen and (min-width: 768px) {
-  .wt-grid-col-sm-1 {
-    flex-basis: 10%;
-    max-width: 10%; }
-  .wt-grid-col-sm-2 {
-    flex-basis: 20%;
-    max-width: 20%; }
-  .wt-grid-col-sm-3 {
-    flex-basis: 30%;
-    max-width: 30%; }
-  .wt-grid-col-sm-4 {
-    flex-basis: 40%;
-    max-width: 40%; }
-  .wt-grid-col-sm-5 {
-    flex-basis: 50%;
-    max-width: 50%; }
-  .wt-grid-col-sm-6 {
-    flex-basis: 60%;
-    max-width: 60%; }
-  .wt-grid-col-sm-7 {
-    flex-basis: 70%;
-    max-width: 70%; }
-  .wt-grid-col-sm-8 {
-    flex-basis: 80%;
-    max-width: 80%; }
-  .wt-grid-col-sm-9 {
-    flex-basis: 90%;
-    max-width: 90%; }
-  .wt-grid-col-sm-10 {
-    flex-basis: 100%;
-    max-width: 100%; }
-  .wt-grid-off-sm-1 {
-    margin-left: 10%; }
-  .wt-grid-off-sm-2 {
-    margin-left: 20%; }
-  .wt-grid-off-sm-3 {
-    margin-left: 30%; }
-  .wt-grid-off-sm-4 {
-    margin-left: 40%; }
-  .wt-grid-off-sm-5 {
-    margin-left: 50%; }
-  .wt-grid-off-sm-6 {
-    margin-left: 60%; }
-  .wt-grid-off-sm-7 {
-    margin-left: 70%; }
-  .wt-grid-off-sm-8 {
-    margin-left: 80%; }
-  .wt-grid-off-sm-9 {
-    margin-left: 90%; }
-  .wt-grid-off-sm-reset {
-    margin-left: 0; } }
+.col-xs-offset-10 {
+  margin-left: 100%; }
 
-@media only screen and (min-width: 992px) {
-  .wt-grid-col-md-1 {
-    flex-basis: 10%;
-    max-width: 10%; }
-  .wt-grid-col-md-2 {
-    flex-basis: 20%;
-    max-width: 20%; }
-  .wt-grid-col-md-3 {
-    flex-basis: 30%;
-    max-width: 30%; }
-  .wt-grid-col-md-4 {
-    flex-basis: 40%;
-    max-width: 40%; }
-  .wt-grid-col-md-5 {
-    flex-basis: 50%;
-    max-width: 50%; }
-  .wt-grid-col-md-6 {
-    flex-basis: 60%;
-    max-width: 60%; }
-  .wt-grid-col-md-7 {
-    flex-basis: 70%;
-    max-width: 70%; }
-  .wt-grid-col-md-8 {
-    flex-basis: 80%;
-    max-width: 80%; }
-  .wt-grid-col-md-9 {
-    flex-basis: 90%;
-    max-width: 90%; }
-  .wt-grid-col-md-10 {
-    flex-basis: 100%;
-    max-width: 100%; }
-  .wt-grid-off-md-1 {
-    margin-left: 10%; }
-  .wt-grid-off-md-2 {
-    margin-left: 20%; }
-  .wt-grid-off-md-3 {
-    margin-left: 30%; }
-  .wt-grid-off-md-4 {
-    margin-left: 40%; }
-  .wt-grid-off-md-5 {
-    margin-left: 50%; }
-  .wt-grid-off-md-6 {
-    margin-left: 60%; }
-  .wt-grid-off-md-7 {
-    margin-left: 70%; }
-  .wt-grid-off-md-8 {
-    margin-left: 80%; }
-  .wt-grid-off-md-9 {
-    margin-left: 90%; }
-  .wt-grid-off-md-reset {
-    margin-left: 0; } }
+.row.start-xs {
+  justify-content: flex-start; }
 
-@media only screen and (min-width: 1200px) {
-  .wt-grid-col-lg-1 {
+.row.center-xs {
+  justify-content: center; }
+
+.row.end-xs {
+  justify-content: flex-end; }
+
+.row.top-xs {
+  align-items: flex-start; }
+
+.row.middle-xs {
+  align-items: center; }
+
+.row.bottom-xs {
+  align-items: flex-end; }
+
+.row.around-xs {
+  justify-content: space-around; }
+
+.row.between-xs {
+  justify-content: space-between; }
+
+.first-xs {
+  order: -1; }
+
+.last-xs {
+  order: 1; }
+
+@media only screen and (min-width: 41rem) {
+  .col-sm {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-sm-1 {
+    box-sizing: border-box;
     flex-basis: 10%;
-    max-width: 10%; }
-  .wt-grid-col-lg-2 {
-    flex-basis: 20%;
-    max-width: 20%; }
-  .wt-grid-col-lg-3 {
-    flex-basis: 30%;
-    max-width: 30%; }
-  .wt-grid-col-lg-4 {
-    flex-basis: 40%;
-    max-width: 40%; }
-  .wt-grid-col-lg-5 {
-    flex-basis: 50%;
-    max-width: 50%; }
-  .wt-grid-col-lg-6 {
-    flex-basis: 60%;
-    max-width: 60%; }
-  .wt-grid-col-lg-7 {
-    flex-basis: 70%;
-    max-width: 70%; }
-  .wt-grid-col-lg-8 {
-    flex-basis: 80%;
-    max-width: 80%; }
-  .wt-grid-col-lg-9 {
-    flex-basis: 90%;
-    max-width: 90%; }
-  .wt-grid-col-lg-10 {
-    flex-basis: 100%;
-    max-width: 100%; }
-  .wt-grid-off-lg-1 {
+    max-width: 10%;
+    padding: 1rem; }
+  .col-sm-offset-1 {
     margin-left: 10%; }
-  .wt-grid-off-lg-2 {
+  .col-sm-2 {
+    box-sizing: border-box;
+    flex-basis: 20%;
+    max-width: 20%;
+    padding: 1rem; }
+  .col-sm-offset-2 {
     margin-left: 20%; }
-  .wt-grid-off-lg-3 {
+  .col-sm-3 {
+    box-sizing: border-box;
+    flex-basis: 30%;
+    max-width: 30%;
+    padding: 1rem; }
+  .col-sm-offset-3 {
     margin-left: 30%; }
-  .wt-grid-off-lg-4 {
+  .col-sm-4 {
+    box-sizing: border-box;
+    flex-basis: 40%;
+    max-width: 40%;
+    padding: 1rem; }
+  .col-sm-offset-4 {
     margin-left: 40%; }
-  .wt-grid-off-lg-5 {
+  .col-sm-5 {
+    box-sizing: border-box;
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 1rem; }
+  .col-sm-offset-5 {
     margin-left: 50%; }
-  .wt-grid-off-lg-6 {
+  .col-sm-6 {
+    box-sizing: border-box;
+    flex-basis: 60%;
+    max-width: 60%;
+    padding: 1rem; }
+  .col-sm-offset-6 {
     margin-left: 60%; }
-  .wt-grid-off-lg-7 {
+  .col-sm-7 {
+    box-sizing: border-box;
+    flex-basis: 70%;
+    max-width: 70%;
+    padding: 1rem; }
+  .col-sm-offset-7 {
     margin-left: 70%; }
-  .wt-grid-off-lg-8 {
+  .col-sm-8 {
+    box-sizing: border-box;
+    flex-basis: 80%;
+    max-width: 80%;
+    padding: 1rem; }
+  .col-sm-offset-8 {
     margin-left: 80%; }
-  .wt-grid-off-lg-9 {
+  .col-sm-9 {
+    box-sizing: border-box;
+    flex-basis: 90%;
+    max-width: 90%;
+    padding: 1rem; }
+  .col-sm-offset-9 {
     margin-left: 90%; }
-  .wt-grid-off-lg-reset {
-    margin-left: 0; } }
+  .col-sm-10 {
+    box-sizing: border-box;
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-sm-offset-10 {
+    margin-left: 100%; }
+  .row.start-sm {
+    justify-content: flex-start; }
+  .row.center-sm {
+    justify-content: center; }
+  .row.end-sm {
+    justify-content: flex-end; }
+  .row.top-sm {
+    align-items: flex-start; }
+  .row.middle-sm {
+    align-items: center; }
+  .row.bottom-sm {
+    align-items: flex-end; }
+  .row.around-sm {
+    justify-content: space-around; }
+  .row.between-sm {
+    justify-content: space-between; }
+  .first-sm {
+    order: -1; }
+  .last-sm {
+    order: 1; } }
+
+@media only screen and (min-width: 65rem) {
+  .col-md {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-md-1 {
+    box-sizing: border-box;
+    flex-basis: 10%;
+    max-width: 10%;
+    padding: 1rem; }
+  .col-md-offset-1 {
+    margin-left: 10%; }
+  .col-md-2 {
+    box-sizing: border-box;
+    flex-basis: 20%;
+    max-width: 20%;
+    padding: 1rem; }
+  .col-md-offset-2 {
+    margin-left: 20%; }
+  .col-md-3 {
+    box-sizing: border-box;
+    flex-basis: 30%;
+    max-width: 30%;
+    padding: 1rem; }
+  .col-md-offset-3 {
+    margin-left: 30%; }
+  .col-md-4 {
+    box-sizing: border-box;
+    flex-basis: 40%;
+    max-width: 40%;
+    padding: 1rem; }
+  .col-md-offset-4 {
+    margin-left: 40%; }
+  .col-md-5 {
+    box-sizing: border-box;
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 1rem; }
+  .col-md-offset-5 {
+    margin-left: 50%; }
+  .col-md-6 {
+    box-sizing: border-box;
+    flex-basis: 60%;
+    max-width: 60%;
+    padding: 1rem; }
+  .col-md-offset-6 {
+    margin-left: 60%; }
+  .col-md-7 {
+    box-sizing: border-box;
+    flex-basis: 70%;
+    max-width: 70%;
+    padding: 1rem; }
+  .col-md-offset-7 {
+    margin-left: 70%; }
+  .col-md-8 {
+    box-sizing: border-box;
+    flex-basis: 80%;
+    max-width: 80%;
+    padding: 1rem; }
+  .col-md-offset-8 {
+    margin-left: 80%; }
+  .col-md-9 {
+    box-sizing: border-box;
+    flex-basis: 90%;
+    max-width: 90%;
+    padding: 1rem; }
+  .col-md-offset-9 {
+    margin-left: 90%; }
+  .col-md-10 {
+    box-sizing: border-box;
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-md-offset-10 {
+    margin-left: 100%; }
+  .row.start-md {
+    justify-content: flex-start; }
+  .row.center-md {
+    justify-content: center; }
+  .row.end-md {
+    justify-content: flex-end; }
+  .row.top-md {
+    align-items: flex-start; }
+  .row.middle-md {
+    align-items: center; }
+  .row.bottom-md {
+    align-items: flex-end; }
+  .row.around-md {
+    justify-content: space-around; }
+  .row.between-md {
+    justify-content: space-between; }
+  .first-md {
+    order: -1; }
+  .last-md {
+    order: 1; } }
+
+@media only screen and (min-width: 91rem) {
+  .col-lg {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-lg-1 {
+    box-sizing: border-box;
+    flex-basis: 10%;
+    max-width: 10%;
+    padding: 1rem; }
+  .col-lg-offset-1 {
+    margin-left: 10%; }
+  .col-lg-2 {
+    box-sizing: border-box;
+    flex-basis: 20%;
+    max-width: 20%;
+    padding: 1rem; }
+  .col-lg-offset-2 {
+    margin-left: 20%; }
+  .col-lg-3 {
+    box-sizing: border-box;
+    flex-basis: 30%;
+    max-width: 30%;
+    padding: 1rem; }
+  .col-lg-offset-3 {
+    margin-left: 30%; }
+  .col-lg-4 {
+    box-sizing: border-box;
+    flex-basis: 40%;
+    max-width: 40%;
+    padding: 1rem; }
+  .col-lg-offset-4 {
+    margin-left: 40%; }
+  .col-lg-5 {
+    box-sizing: border-box;
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 1rem; }
+  .col-lg-offset-5 {
+    margin-left: 50%; }
+  .col-lg-6 {
+    box-sizing: border-box;
+    flex-basis: 60%;
+    max-width: 60%;
+    padding: 1rem; }
+  .col-lg-offset-6 {
+    margin-left: 60%; }
+  .col-lg-7 {
+    box-sizing: border-box;
+    flex-basis: 70%;
+    max-width: 70%;
+    padding: 1rem; }
+  .col-lg-offset-7 {
+    margin-left: 70%; }
+  .col-lg-8 {
+    box-sizing: border-box;
+    flex-basis: 80%;
+    max-width: 80%;
+    padding: 1rem; }
+  .col-lg-offset-8 {
+    margin-left: 80%; }
+  .col-lg-9 {
+    box-sizing: border-box;
+    flex-basis: 90%;
+    max-width: 90%;
+    padding: 1rem; }
+  .col-lg-offset-9 {
+    margin-left: 90%; }
+  .col-lg-10 {
+    box-sizing: border-box;
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-lg-offset-10 {
+    margin-left: 100%; }
+  .row.start-lg {
+    justify-content: flex-start; }
+  .row.center-lg {
+    justify-content: center; }
+  .row.end-lg {
+    justify-content: flex-end; }
+  .row.top-lg {
+    align-items: flex-start; }
+  .row.middle-lg {
+    align-items: center; }
+  .row.bottom-lg {
+    align-items: flex-end; }
+  .row.around-lg {
+    justify-content: space-around; }
+  .row.between-lg {
+    justify-content: space-between; }
+  .first-lg {
+    order: -1; }
+  .last-lg {
+    order: 1; } }
+
+@media only screen and (min-width: 121rem) {
+  .col-xl {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-xl-1 {
+    box-sizing: border-box;
+    flex-basis: 10%;
+    max-width: 10%;
+    padding: 1rem; }
+  .col-xl-offset-1 {
+    margin-left: 10%; }
+  .col-xl-2 {
+    box-sizing: border-box;
+    flex-basis: 20%;
+    max-width: 20%;
+    padding: 1rem; }
+  .col-xl-offset-2 {
+    margin-left: 20%; }
+  .col-xl-3 {
+    box-sizing: border-box;
+    flex-basis: 30%;
+    max-width: 30%;
+    padding: 1rem; }
+  .col-xl-offset-3 {
+    margin-left: 30%; }
+  .col-xl-4 {
+    box-sizing: border-box;
+    flex-basis: 40%;
+    max-width: 40%;
+    padding: 1rem; }
+  .col-xl-offset-4 {
+    margin-left: 40%; }
+  .col-xl-5 {
+    box-sizing: border-box;
+    flex-basis: 50%;
+    max-width: 50%;
+    padding: 1rem; }
+  .col-xl-offset-5 {
+    margin-left: 50%; }
+  .col-xl-6 {
+    box-sizing: border-box;
+    flex-basis: 60%;
+    max-width: 60%;
+    padding: 1rem; }
+  .col-xl-offset-6 {
+    margin-left: 60%; }
+  .col-xl-7 {
+    box-sizing: border-box;
+    flex-basis: 70%;
+    max-width: 70%;
+    padding: 1rem; }
+  .col-xl-offset-7 {
+    margin-left: 70%; }
+  .col-xl-8 {
+    box-sizing: border-box;
+    flex-basis: 80%;
+    max-width: 80%;
+    padding: 1rem; }
+  .col-xl-offset-8 {
+    margin-left: 80%; }
+  .col-xl-9 {
+    box-sizing: border-box;
+    flex-basis: 90%;
+    max-width: 90%;
+    padding: 1rem; }
+  .col-xl-offset-9 {
+    margin-left: 90%; }
+  .col-xl-10 {
+    box-sizing: border-box;
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 1rem; }
+  .col-xl-offset-10 {
+    margin-left: 100%; }
+  .row.start-xl {
+    justify-content: flex-start; }
+  .row.center-xl {
+    justify-content: center; }
+  .row.end-xl {
+    justify-content: flex-end; }
+  .row.top-xl {
+    align-items: flex-start; }
+  .row.middle-xl {
+    align-items: center; }
+  .row.bottom-xl {
+    align-items: flex-end; }
+  .row.around-xl {
+    justify-content: space-around; }
+  .row.between-xl {
+    justify-content: space-between; }
+  .first-xl {
+    order: -1; }
+  .last-xl {
+    order: 1; } }
+
+.col-gutter-lr {
+  padding: 0 1rem; }
+
+.col-no-gutter {
+  padding: 0; }
+
+.show {
+  display: block !important; }
+
+.row.show {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important; }
+
+.hide {
+  display: none !important; }
+
+.show-xs {
+  display: block !important; }
+
+.row.show-xs {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important; }
+
+.hide-xs {
+  display: none !important; }
+
+@media only screen and (max-width: 40rem) {
+  .show-xs-only {
+    display: block !important; }
+  .row.show-xs-only {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-xs-only {
+    display: none !important; } }
+
+@media only screen and (min-width: 41rem) {
+  .show-sm {
+    display: block !important; }
+  .row.show-sm {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-sm {
+    display: none !important; } }
+
+@media only screen and (min-width: 41rem) and (max-width: 64rem) {
+  .show-sm-only {
+    display: block !important; }
+  .row.show-sm-only {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-sm-only {
+    display: none !important; } }
+
+@media only screen and (min-width: 65rem) {
+  .show-md {
+    display: block !important; }
+  .row.show-md {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-md {
+    display: none !important; } }
+
+@media only screen and (min-width: 65rem) and (max-width: 90rem) {
+  .show-md-only {
+    display: block !important; }
+  .row.show-md-only {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-md-only {
+    display: none !important; } }
+
+@media only screen and (min-width: 91rem) {
+  .show-lg {
+    display: block !important; }
+  .row.show-lg {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-lg {
+    display: none !important; } }
+
+@media only screen and (min-width: 91rem) and (max-width: 120rem) {
+  .show-lg-only {
+    display: block !important; }
+  .row.show-lg-only {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-lg-only {
+    display: none !important; } }
+
+@media only screen and (min-width: 121rem) {
+  .show-xl {
+    display: block !important; }
+  .row.show-xl {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important; }
+  .hide-xl {
+    display: none !important; } }
 
 /* === Font Awesome ======================================================== */
 /**

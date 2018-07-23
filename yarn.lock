@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@drewbot/sass-flexbox-grid@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@drewbot/sass-flexbox-grid/-/sass-flexbox-grid-2.0.7.tgz#3e1a9bb995139d1f7f849ae215926b91e32ff6dc"
+
 abab@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
@@ -6387,10 +6391,6 @@ schema-utils@^0.3.0:
   resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   dependencies:
     ajv "^5.0.0"
-
-scss-flex-grid@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/scss-flex-grid/-/scss-flex-grid-0.3.5.tgz#f8342da50bac65e45867c9012e914eb880d9b9a1"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"

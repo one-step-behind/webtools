@@ -24,7 +24,7 @@
   "devDependencies": {
     "classnames": "^2.2.6",
     "node-sass-chokidar": "^1.3.0",
-    "scss-flex-grid": "^0.3.5",
+    "@drewbot/sass-flexbox-grid": "^2.0.7",
     "speakingurl": "^14.0.1"
   }
 }

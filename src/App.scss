@@ -1,11 +1,10 @@
 /* === Variables =========================================================== */
 // === Grid
-$fg-columns: 10;
-$fg-gutter: 1rem;
-$grid-ns: 'wt-grid';
-$fg-class-row: '#{$grid-ns}-row';
-$fg-class-col: '#{$grid-ns}-col';
-$fg-class-off: '#{$grid-ns}-off';
+$grid-columns: 10;
+$gutter: 1rem;
+
+$form-element-background: #eee;
+$form-element-border-color: #bbb;
 
 /* === General ============================================================= */
 
@@ -71,10 +70,10 @@ input,
 .input,
 select {
   box-sizing: border-box;
-  padding: 0 ($fg-gutter / 2);
+  padding: 0 ($gutter / 2);
   font-size: 2.5rem;
   line-height: 4rem;
-  border: 1px solid #ccc;
+  border: 1px solid $form-element-border-color;
   border-radius: 0;
   appearance: none;
   font-family: Monospace;
@@ -100,21 +99,20 @@ textarea {
   color: rgba(0, 0, 0, 1);
   width: 100%;
   height: 200px;
-  border: 1px solid rgb(204, 204, 204);
-  padding: ($fg-gutter / 2);
+  border: 1px solid $form-element-border-color;
+  padding: ($gutter / 2);
   display: block;
   position: relative;
   overflow: auto;
-  font-size: 13px;
   box-sizing: border-box;
-  font-style: normal;
+  font-style: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
   text-align: left;
-  font-family: 'Arial';
-  font-weight: normal;
   line-height: normal;
   background-color: rgb(238, 238, 238);
   resize: none;
-  outline: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -139,11 +137,11 @@ textarea {
 }
 
 .util-p-t-1 {
-  padding-top: $fg-gutter !important;
+  padding-top: $gutter !important;
 }
 
 .util-p-b-2 {
-  padding-bottom: $fg-gutter * 2 !important;
+  padding-bottom: $gutter * 2 !important;
 }
 
 /* === Calculator ========================================================== */
@@ -164,32 +162,26 @@ textarea {
   margin-right: 9px;
 }
 
-.gap {
-  font-size: 2rem;
-  text-align: center;
-  margin: 2rem auto;
-  padding: .5rem;
-}
-
 .outputCalc {
   padding: 0 .5rem;
   font-size: 2.5rem;
   line-height: 4rem;
-  border: 1px solid #ccc;
-  width: 400px;
+  border: 1px solid $form-element-border-color;
+  width: 420px;
   font-family: Monospace;
+  display: inline-block;
+  text-align: center;
 }
 
 /* === Slug ================================================================ */
 
 .inputSlug {
-  background: #eee;
+  background: $form-element-background;
   width: 100%;
-  margin-bottom: 1em;
 }
 
 .buttonSlug {
-  background: #eee;
+  background: $form-element-background;
 }
 
 /* === RGB2Hex ============================================================= */
@@ -211,8 +203,8 @@ textarea {
     top: 50%;
     width: 64px;
     text-align: center;
-    border-bottom: 1px dotted #ccc;
-    background-color: #f2f2f2;
+    border-bottom: 1px dotted $form-element-border-color;
+    background-color: $form-element-background;
 
     ~.rgbValue,
     ~.hexValue {
@@ -231,7 +223,7 @@ textarea {
 .rgbValue,
 .hexValue,
 .example-bg {
-  border: 1px dotted #ccc;
+  border: 1px dotted $form-element-border-color;
   display: inline-block;
   width: 100%;
 }
@@ -244,8 +236,8 @@ textarea {
 /* === Base64 ============================================================== */
 .wiki {
   text-align: left;
-  padding: $fg-gutter;
-  background-color: #f2f2f2;
+  padding: $gutter;
+  background-color: $form-element-background;
 }
 
 .sub-page-link {
@@ -260,7 +252,7 @@ textarea {
 
 
 /* === Grid ================================================================ */
-@import "scss-flex-grid/flex-grid";
+@import "@drewbot/sass-flexbox-grid/public/sass-flexbox/scss/main";
 
 /* === Font Awesome ======================================================== */
 /**

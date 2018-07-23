@@ -3,6 +3,11 @@ import React, { PureComponent } from 'react';
 
 import getSlug from 'speakingurl';
 
+const upperCaseStrings = [
+  '^opt-',
+  '^tech-',
+];
+
 class Slug extends PureComponent {
   constructor(props) {
     super(props);
@@ -12,9 +17,9 @@ class Slug extends PureComponent {
     this.textOutput = React.createRef();
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.focusTextInput();
-  }
+  };
 
   focusTextInput = () => {
     // Explicitly focus the text input using the raw DOM API
@@ -24,10 +29,9 @@ class Slug extends PureComponent {
 
   stringToSlug = () => {
     let slug = getSlug(this.textInput.current.value);
+    let re = new RegExp(upperCaseStrings.join('|'), 'gi');
 
-    slug = slug.replace(/^opt-|^tech-/gi, function (x) {
-      return x.toUpperCase();
-    });
+    slug = slug.replace(re, x => x.toUpperCase());
 
     this.textOutput.current.value = slug;
   };
@@ -36,21 +40,25 @@ class Slug extends PureComponent {
     return (
       <React.Fragment>
         <h1>Slug</h1>
-        <p className="subheader">The part of an URL which identifies a page using human-readable keywords.
-          Input a string of text and slugify it.</p>
+        <p className="subheader">
+          The part of an URL which identifies a page using human-readable keywords.
+          Input a string of text and slugify it.
+        </p>
 
-        <div className="gap">
-          Any ordinary string
-          <input size="150" className="inputSlug" ref={this.textInput} onChange={this.stringToSlug} />
-        </div>
+        <div className="row">
+          <div className="col-lg-10 util-p-t-1 util-p-b-1">
+            <div className="left">Any ordinary string</div>
+            <input size="150" className="inputSlug" ref={this.textInput} onChange={this.stringToSlug} />
+          </div>
 
-        <div className="gap">
-          Human-readable url slug
-          <input size="150" className="inputSlug" readOnly ref={this.textOutput} />
-        </div>
+          <div className="col-lg-10 util-p-t-1 util-p-b-1">
+            <div className="left">Human-readable url slug</div>
+            <input size="150" className="inputSlug" readOnly ref={this.textOutput} />
+          </div>
 
-        <div className="gap">
-          <input type="button" className="buttonSlug" onClick={this.stringToSlug} value="Slugify" />
+          <div className="col-lg-2 col-lg-offset-4 util-p-t-1 util-p-b-1">
+            <input type="button" className="buttonSlug" onClick={this.stringToSlug} value="Slugify" />
+          </div>
         </div>
       </React.Fragment>
     );

@@ -193,7 +193,7 @@ class Rgb2Hex extends PureComponent {
     });
 
     return (
-      <div key={`table-col-${col}`} className="wt-grid-col-lg-2 util-p-t-1 util-p-b-2">
+      <div key={`table-col-${col}`} className="col-lg-2 util-p-b-2">
         <p className="left util-m-t-0">
           <label className={inputLabelClasses}>RGB{fieldsCount < 4 && ':'}</label>
           <input
@@ -242,7 +242,7 @@ class Rgb2Hex extends PureComponent {
         <h1>RGB to Hex to RGB</h1>
         <p className="subheader">Fill in either RGB or Hex values</p>
 
-        <div className="wt-grid-row">
+        <div className="row">
           {columns.map(x => this.renderCell(x))}
         </div>
 

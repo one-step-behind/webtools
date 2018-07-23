@@ -12,7 +12,19 @@ class Calculator extends PureComponent {
       sum: 0,
       sign: '+'
     };
+
+    this.textInput = React.createRef();
   }
+
+  componentDidMount() {
+    this.focusTextInput();
+  }
+
+  focusTextInput = () => {
+    // Explicitly focus the text input using the raw DOM API
+    // Note: we're accessing "current" to get the DOM node
+    this.textInput.current.focus();
+  };
 
   onChange = (event) => {
     const fieldName = event.target.getAttribute('name');
@@ -81,20 +93,25 @@ class Calculator extends PureComponent {
     return (
       <React.Fragment>
         <h1>Instant calculator</h1>
+        <p className="subheader">
+          Instantly calculates the stuff you typed in
+        </p>
 
-        <div className="gap">
-          <input type="text" name="firstValue" id="firstValue" className="inputCalc" size="20" maxLength="20" value={this.state.firstValue} onChange={this.onChange} />
-          <select name="sign" defaultChecked={this.state.sign} className="signCalc" ref={ref => this.sign = ref} onChange={this.onChange}>
-            {
-              operators.map((operator, index) => {
-                return (<option key={index} value={`${operator}`}>{operator}</option>);
-              })
-            }
-          </select>
-          <input type="text" name="secondValue" id="secondValue" className="inputCalc" size="20" maxLength="20" value={this.state.secondValue} onChange={this.onChange} />
+        <div className="row">
+          <div className="col-lg-6 col-xs-offset-2 util-p-b-1">
+            <input type="text" name="firstValue" id="firstValue" className="inputCalc" size="20" maxLength="20" value={this.state.firstValue} ref={this.textInput} onChange={this.onChange} />
+            <select name="sign" defaultChecked={this.state.sign} className="signCalc" ref={ref => this.sign = ref} onChange={this.onChange}>
+              {
+                operators.map((operator, index) => {
+                  return (<option key={index} value={`${operator}`}>{operator}</option>);
+                })
+              }
+            </select>
+            <input type="text" name="secondValue" id="secondValue" className="inputCalc" size="20" maxLength="20" value={this.state.secondValue} onChange={this.onChange} />
+            {' = '}
+            <input type="text" value={this.localeString(this.state.sum)} className="outputCalc" readOnly />
+          </div>
         </div>
-
-        <div className="outputCalc gap">{this.localeString(this.state.sum)}</div>
       </React.Fragment>
     );
   }
