@@ -7,6 +7,7 @@ import Calculator from './components/Calculator';
 import Rgb2Hex from './components/Rgb2Hex';
 import Slug from './components/Slug';
 import Base64 from './components/Base64';
+import Casing from './components/Casing';
 
 class App extends PureComponent {
   constructor(props) {
@@ -68,15 +69,24 @@ class App extends PureComponent {
             {/*<img src={logo} className="App-logo" alt="logo" />*/}
             Webtools
           </h1>
-          <Navigation selectedPage={selectedPage} onClickNavigation={this.onClickNavigation} />
+
+          <Navigation
+            selectedPage={selectedPage}
+            onClickNavigation={this.onClickNavigation}
+          />
         </header>
         <div className="App-intro">
           { selectedPage === 'calculator' && <Calculator /> }
           { selectedPage === 'rgb2hex' && <Rgb2Hex /> }
           { selectedPage === 'slug' && <Slug /> }
+          { selectedPage === 'casing' && <Casing /> }
           {
             selectedPage === 'base64' &&
-            <Base64 selectedSubPage={selectedSubPage} onClickSubNavigation={this.onClickSubNavigation} />
+            <Base64
+              selectedPage={selectedPage}
+              selectedSubPage={selectedSubPage}
+              onClickSubNavigation={this.onClickSubNavigation}
+            />
           }
         </div>
       </div>

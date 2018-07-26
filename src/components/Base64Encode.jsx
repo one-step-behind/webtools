@@ -264,7 +264,7 @@ class Base64Encode extends PureComponent {
               <br />As this example illustrates, Base64 encoding converts 3 uncoded bytes (in this case, ASCII characters)
               into 4 encoded ASCII characters.<br />
               <br />At Wikipedia you can read more about the <a href="http://en.wikipedia.org/wiki/Base64" target="_blank"
-                                                                rel="external nofollow">encoding</a>.
+                                                                rel="external nofollow noopener noreferrer">encoding</a>.
             </div>
           </div>
         </div>

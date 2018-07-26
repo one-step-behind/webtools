@@ -1,23 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import config from '../config';
+
 const Navigation = ({
   selectedPage,
   onClickNavigation,
 }) => (
   <ul className="navigation">
-    <li className={selectedPage === 'calculator' ? 'is-selected' : null} onClick={onClickNavigation} data-link="calculator">
-      Instant calculator
-    </li>
-    <li className={selectedPage === 'rgb2hex' ? 'is-selected' : null} onClick={onClickNavigation} data-link="rgb2hex">
-      RGB to Hex to RGB
-    </li>
-    <li className={selectedPage === 'slug' ? 'is-selected' : null} onClick={onClickNavigation} data-link="slug">
-      Slug
-    </li>
-    <li className={selectedPage === 'base64' ? 'is-selected' : null} onClick={onClickNavigation} data-link="base64">
-      Base64 Decode/Encode
-    </li>
+    {
+      config.navigationItems.map(item =>
+        <li
+          key={`navi-${item.id}`}
+          className={selectedPage === item.id ? 'is-selected' : null}
+          onClick={onClickNavigation}
+          data-link={item.id}
+        >
+          {item.name}
+        </li>
+      )
+    }
   </ul>
 );
 
