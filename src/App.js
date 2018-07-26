@@ -3,11 +3,21 @@ import React, { PureComponent } from 'react';
 import './App.css';
 
 import Navigation from './components/Navigation';
+
+/*
+import config from './config';
+config.navigationItems.map(navItem => {
+  let Component = navItem.component;
+  return <Component key={navItem.component} />;
+  //return require(`./components/${navItem.component}`);
+});
+*/
 import Calculator from './components/Calculator';
 import Rgb2Hex from './components/Rgb2Hex';
 import Slug from './components/Slug';
-import Base64 from './components/Base64';
 import Casing from './components/Casing';
+import Base64 from './components/Base64';
+import Snippets from './components/Snippets';
 
 class App extends PureComponent {
   constructor(props) {
@@ -88,6 +98,7 @@ class App extends PureComponent {
               onClickSubNavigation={this.onClickSubNavigation}
             />
           }
+          { selectedPage === 'snippets' && <Snippets /> }
         </div>
       </div>
     );
