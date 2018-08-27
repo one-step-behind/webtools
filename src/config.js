@@ -36,6 +36,11 @@ export default {
       ]
     },
     {
+      id: 'favicons',
+      component: 'Favicons',
+      name: 'Favicons',
+    },
+    {
       id: 'snippets',
       component: 'Snippets',
       name: 'Snippets',

@@ -11,6 +11,13 @@ config.navigationItems.map(navItem => {
   return <Component key={navItem.component} />;
   //return require(`./components/${navItem.component}`);
 });
+
+const Component = route.component || route.render;
+
+  const render = props => (
+    <Component {...props} routes={route.routes} />
+  );
+
 */
 import Calculator from './components/Calculator';
 import Rgb2Hex from './components/Rgb2Hex';
@@ -18,6 +25,7 @@ import Slug from './components/Slug';
 import Casing from './components/Casing';
 import Base64 from './components/Base64';
 import Snippets from './components/Snippets';
+import Favicons from './components/Favicons';
 
 class App extends PureComponent {
   constructor(props) {
@@ -98,6 +106,7 @@ class App extends PureComponent {
               onClickSubNavigation={this.onClickSubNavigation}
             />
           }
+          { selectedPage === 'favicons' && <Favicons /> }
           { selectedPage === 'snippets' && <Snippets /> }
         </div>
       </div>
