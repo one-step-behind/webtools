@@ -47,19 +47,20 @@ class Rgb2Hex extends PureComponent {
 
     let index = /[\d]/;
     let targetIndex = e.id.match(index)[0];
+    let theValue = e.value.trim();
 
     this[`hexInput${targetIndex}`].value = '';
     this[`exampleBg${targetIndex}`].style.backgroundColor = 'initial';
     this[`exampleText${targetIndex}`].style.color = 'initial';
 
     let [...rgbValues] = this.state.rgbValues;
-    rgbValues[targetIndex] = e.value;
+    rgbValues[targetIndex] = theValue;
     let [...hexValues] = this.state.hexValues;
-    hexValues[targetIndex] = this.rgb2hex(e.value, targetIndex);
+    hexValues[targetIndex] = this.rgb2hex(theValue, targetIndex);
 
     /* Save or delete rgb value to/from local storage */
     if (e.value !== '') {
-      localStorage.setItem('rgb-' + targetIndex, e.value);
+      localStorage.setItem('rgb-' + targetIndex, rgbValues[targetIndex]);
     } else {
       localStorage.removeItem('rgb-' + targetIndex);
     }
@@ -99,15 +100,16 @@ class Rgb2Hex extends PureComponent {
   changeHex2rgb = (e) => {
     let index = /[\d]/;
     let targetIndex = e.target.id.match(index)[0];
+    let theValue = e.target.value.trim();
 
     this[`rgbInput${targetIndex}`].value = '';
     this[`exampleBg${targetIndex}`].style.backgroundColor = 'initial';
     this[`exampleText${targetIndex}`].style.color = 'initial';
 
     let [...rgbValues] = this.state.rgbValues;
-    rgbValues[targetIndex] = this.hex2rgb(e.target.value, targetIndex);
+    rgbValues[targetIndex] = this.hex2rgb(theValue, targetIndex);
     let [...hexValues] = this.state.hexValues;
-    hexValues[targetIndex] = e.target.value;
+    hexValues[targetIndex] = theValue;
 
     /* Save or remove rgb value to/from local storage */
     if (rgbValues[targetIndex] !== '') {
