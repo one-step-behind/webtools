@@ -27,6 +27,10 @@ class Slug extends PureComponent {
     this.textInput.current.focus();
   };
 
+  onOutputFocus = (e) => {
+    e.target.select();
+  };
+
   stringToSlug = () => {
     let slug = getSlug(this.textInput.current.value);
     let re = new RegExp(upperCaseStrings.join('|'), 'gi');
@@ -53,7 +57,7 @@ class Slug extends PureComponent {
 
           <div className="col-lg-10 util-p-t-1 util-p-b-1">
             <div className="left">Human-readable url slug</div>
-            <input size="150" className="inputSlug" readOnly ref={this.textOutput} />
+            <input size="150" className="inputSlug" readOnly ref={this.textOutput} onFocus={this.onOutputFocus} />
           </div>
 
           <div className="col-lg-2 col-lg-offset-4 util-p-t-1 util-p-b-1">
