@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 //import favicons from 'favicons';
+//const favicons = require('favicons');
+
+//import favicons from '@patrickhulce/favicons';
 
 const faviconConfiguration = {
   path: "/",                      // Path for overriding default icons path. `string`
@@ -37,7 +40,24 @@ const faviconConfiguration = {
   }
 };
 
+const faviconSource = 'test/logo.jpg'; // Source image(s). `string`, `buffer` or array of `string`
+
+const faviconCallback = function (error, response) {
+  if (error) {
+    console.log(error.message); // Error description e.g. "An unknown error has occurred"
+    return;
+  }
+  console.log(response.images);   // Array of { name: string, contents: <buffer> }
+  console.log(response.files);    // Array of { name: string, contents: <string> }
+  console.log(response.html);     // Array of strings (html elements)
+};
+
 class Favicons extends PureComponent {
+  componentDidMount() {
+    //favicons(faviconSource, faviconConfiguration, faviconCallback);
+    //favicons.generateFavicons(faviconSource);
+  }
+
   render() {
     return (
       <div>https://github.com/itgalaxy/favicons</div>
