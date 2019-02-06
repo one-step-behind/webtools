@@ -32,10 +32,13 @@ class Slug extends PureComponent {
   };
 
   stringToSlug = () => {
-    let slug = getSlug(this.textInput.current.value);
-    let re = new RegExp(upperCaseStrings.join('|'), 'gi');
+    let slug = getSlug(this.textInput.current.value, {
+      lang: false,
+    });
 
-    slug = slug.replace(re, x => x.toUpperCase());
+    let upperCase = new RegExp(upperCaseStrings.join('|'), 'gi');
+
+    slug = slug.replace(upperCase, x => x.toUpperCase());
 
     this.textOutput.current.value = slug;
   };
