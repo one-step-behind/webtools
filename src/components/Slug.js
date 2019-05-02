@@ -6,6 +6,7 @@ import getSlug from 'speakingurl';
 const upperCaseStrings = [
   '^opt-',
   '^tech-',
+  '^or-',
 ];
 
 class Slug extends PureComponent {
