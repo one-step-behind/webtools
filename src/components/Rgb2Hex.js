@@ -1,8 +1,36 @@
 import React, { PureComponent } from 'react';
-
+import { reactLocalStorage } from 'reactjs-localstorage';
 import classNames from 'classnames';
+import csscolors from 'css-color-names';
 
 const fieldsCount = 10;
+const COOKIE_NAME = 'saveToLocalStorage';
+
+const hex = (x) => {
+  if (x < 0) { x = 0; }
+
+  if (x > 255) { x = 255; }
+
+  return ("0" + parseInt(x, 10).toString(16)).slice(-2);
+};
+
+// https://gist.github.com/Arahnoid/9923989
+const hex2rgb = (hex) => {
+  // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+  let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+
+  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+    return r + r + g + g + b + b;
+  });
+
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+};
 
 class Rgb2Hex extends PureComponent {
   constructor(props) {
@@ -11,26 +39,32 @@ class Rgb2Hex extends PureComponent {
     this.state = {
       rgbValues: [],
       hexValues: [],
+      saveToLocalStorage: 'on',
     };
   }
 
   componentDidMount() {
+    const saveToLocalStorage = reactLocalStorage.get(COOKIE_NAME) === 'on';
+
     let rgbValues = [];
     let hexValues = [];
 
     /* read local storage rgb value if exists and generate hex value */
-    for (let i = 0; i < fieldsCount; i++) {
-      let lsItem = localStorage.getItem('rgb-'+i);
+    if (this.state.saveToLocalStorage) {
+      for (let i = 0; i < fieldsCount; i++) {
+        let lsItem = localStorage.getItem('rgb-'+i);
 
-      if (lsItem) {
-        rgbValues[i] = lsItem;
-        hexValues[i] = this.rgb2hex(lsItem, i);
+        if (lsItem) {
+          rgbValues[i] = lsItem;
+          hexValues[i] = this.rgb2hex(lsItem, i);
+        }
       }
     }
 
     this.setState({
       rgbValues,
-      hexValues
+      hexValues,
+      saveToLocalStorage,
     });
 
     // Currently just for testing
@@ -38,6 +72,22 @@ class Rgb2Hex extends PureComponent {
     //console.log('rgba(236, 56, 52, .8)', this.getRGBa('rgba(236, 56, 52, .8)'));
     //console.log('rgba(236, 56, 52, 10 %)', this.getRGBa('rgba(236, 56, 52, 10 %)'));
   }
+
+  toggleSaveToLocalStorage = () => {
+    if (this.state.saveToLocalStorage) {
+      reactLocalStorage.set(COOKIE_NAME, 'off');
+
+      for (let i = 0; i < fieldsCount; i++) {
+        localStorage.removeItem('rgb-'+i);
+      }
+    } else {
+      reactLocalStorage.set(COOKIE_NAME, 'on');
+    }
+
+    this.setState({
+      saveToLocalStorage: !this.state.saveToLocalStorage,
+    });
+  };
 
   changeRgb2hex = (e) => {
     if (e.target) {
@@ -58,10 +108,12 @@ class Rgb2Hex extends PureComponent {
     hexValues[targetIndex] = this.rgb2hex(theValue, targetIndex);
 
     /* Save or delete rgb value to/from local storage */
-    if (e.value !== '') {
-      localStorage.setItem('rgb-' + targetIndex, rgbValues[targetIndex]);
-    } else {
-      localStorage.removeItem('rgb-' + targetIndex);
+    if (this.state.saveToLocalStorage) {
+      if (e.value !== '') {
+        localStorage.setItem('rgb-' + targetIndex, rgbValues[targetIndex]);
+      } else {
+        localStorage.removeItem('rgb-' + targetIndex);
+      }
     }
 
     this.setState({
@@ -74,21 +126,13 @@ class Rgb2Hex extends PureComponent {
     let rgb = rgbValue.match(/^(\d+),\s*(\d+),\s*(\d+)$/);
 
     if (rgb) {
-      function hex(x) {
-        if (x < 0) {
-          x = 0;
-        }
-        if (x > 255) {
-          x = 255;
-        }
-
-        return ("0" + parseInt(x, 10).toString(16)).slice(-2);
-      }
-
       rgb = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+
+      const hexName = Object.keys(csscolors).find(key => csscolors[key] === rgb);
 
       this[`exampleBg${index}`].style.backgroundColor = rgb;
       this[`exampleText${index}`].style.color = rgb;
+      this[`exampleName${index}`].innerText = hexName ? ` Name: ${hexName}` : '';
 
       return rgb;
     }
@@ -111,10 +155,12 @@ class Rgb2Hex extends PureComponent {
     hexValues[targetIndex] = theValue;
 
     /* Save or remove rgb value to/from local storage */
-    if (rgbValues[targetIndex] !== '') {
-      localStorage.setItem('rgb-' + targetIndex, rgbValues[targetIndex]);
-    } else {
-      localStorage.removeItem('rgb-' + targetIndex);
+    if (this.state.saveToLocalStorage) {
+      if (rgbValues[targetIndex] !== '') {
+        localStorage.setItem('rgb-' + targetIndex, rgbValues[targetIndex]);
+      } else {
+        localStorage.removeItem('rgb-' + targetIndex);
+      }
     }
 
     this.setState({
@@ -123,25 +169,7 @@ class Rgb2Hex extends PureComponent {
     });
   };
 
-  // https://gist.github.com/Arahnoid/9923989
   hex2rgb = (hex, index) => {
-    function hex2rgb(x) {
-      // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-      let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-
-      hex = hex.replace(shorthandRegex, function (m, r, g, b) {
-        return r + r + g + g + b + b;
-      });
-
-      let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : null;
-    }
-
     hex = hex2rgb(hex);
 
     if (hex) {
@@ -219,7 +247,10 @@ class Rgb2Hex extends PureComponent {
           />
         </p>
         <p className="left util-m-y-0">
-          <label className={exampleLabelClasses}>Example:</label>
+          <label className={exampleLabelClasses}>
+            Example:
+            <span ref={text => { this[`exampleName${col}`] = text; }} />
+          </label>
           <input
               id={`example-bg-${col}`}
               className="example-bg"
@@ -242,6 +273,10 @@ class Rgb2Hex extends PureComponent {
       <React.Fragment>
         <h1>RGB to Hex to RGB</h1>
         <p className="subheader">Fill in either RGB or Hex values</p>
+        <p>
+          <input type="checkbox" id="saveToLocalStorage" checked={this.state.saveToLocalStorage} onChange={this.toggleSaveToLocalStorage} />
+          <label htmlFor="saveToLocalStorage">Save values using localStorage</label>
+        </p>
 
         <div className="row">
           {columns.map(x => this.renderCell(x))}
