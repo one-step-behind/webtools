@@ -1,9 +1,13 @@
 import React, { PureComponent } from 'react';
-//import PropTypes from 'prop-types';
-
 import { reactLocalStorage } from 'reactjs-localstorage';
 
 const COOKIE_NAME = 'B64DLIVE';
+
+const unicodeBase64Decode = (text) => {
+  return decodeURIComponent(Array.prototype.map.call(window.atob(text), (c) => {
+    return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(""));
+};
 
 class Base64Decode extends PureComponent {
   constructor(props) {
@@ -95,7 +99,7 @@ class Base64Decode extends PureComponent {
     let decodedData = '';
 
     try {
-      decodedData = this.unicodeBase64Decode(encodedData);
+      decodedData = unicodeBase64Decode(encodedData);
       textOutput.classList.remove('error');
     } catch (error) {
       decodedData = "Malformed input... :(";
@@ -105,12 +109,6 @@ class Base64Decode extends PureComponent {
     this.setState({
       outputValue: decodedData,
     });
-  };
-
-  unicodeBase64Decode = (text) => {
-    return decodeURIComponent(Array.prototype.map.call(window.atob(text), (c) => {
-      return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(""));
   };
 
   onClick = () => {
@@ -165,7 +163,15 @@ class Base64Decode extends PureComponent {
                 <i className={`fa fa-toggle-${this.state.liveMode ? 'on on': 'off'}`} />
                 {' '}Live mode {this.state.liveMode ? 'ON' : 'OFF'}
               </span>
-              <div>Decodes while you type or paste (strict format).</div>
+              {
+                this.state.liveMode
+                ? <div>
+                  Decodes while you type or paste.
+                </div>
+                : <div>
+                  Decodes if you press DECODE button.
+                </div>
+              }
               {/*<div className="note">Note that decoding of binary data (like images, documents, etc.) does not work in live mode.</div>*/}
             </div>
           </div>
@@ -287,9 +293,5 @@ class Base64Decode extends PureComponent {
     );
   }
 }
-
-Base64Decode.defaultProps = {};
-
-Base64Decode.propTypes = {};
 
 export default Base64Decode;

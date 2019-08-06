@@ -1,8 +1,13 @@
 import React, { PureComponent } from 'react';
 import { reactLocalStorage } from 'reactjs-localstorage';
-//import PropTypes from 'prop-types';
 
 const COOKIE_NAME = 'B64ELIVE';
+
+const unicodeBase64Encode = (text) => {
+  return window.btoa(encodeURIComponent(text).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+    return String.fromCharCode('0x' + p1);
+  }));
+};
 
 class Base64Encode extends PureComponent {
   constructor(props) {
@@ -94,7 +99,7 @@ class Base64Encode extends PureComponent {
     let encodedData = '';
 
     try {
-      encodedData = this.unicodeBase64Encode(decodedData);
+      encodedData = unicodeBase64Encode(decodedData);
       textOutput.classList.remove('error');
     } catch (error) {
       encodedData = 'Malformed input... :(';
@@ -104,12 +109,6 @@ class Base64Encode extends PureComponent {
     this.setState({
       outputValue: encodedData,
     });
-  };
-
-  unicodeBase64Encode = (text) => {
-    return window.btoa(encodeURIComponent(text).replace(/%([0-9A-F]{2})/g, function (match, p1) {
-      return String.fromCharCode('0x' + p1);
-    }));
   };
 
   onClick = () => {
@@ -162,7 +161,15 @@ class Base64Encode extends PureComponent {
                 <i className={`fa fa-toggle-${this.state.liveMode ? 'on on': 'off'}`} />
                 {' '}Live mode {this.state.liveMode ? 'ON' : 'OFF'}
               </span>
-              <div>Encodes while you type or paste (strict format).</div>
+              {
+                this.state.liveMode
+                ? <div>
+                  Encodes while you type or paste.
+                </div>
+                : <div>
+                  Encodes if you press ENCODE button.
+                </div>
+              }
             </div>
           </div>
 
@@ -273,9 +280,5 @@ class Base64Encode extends PureComponent {
     );
   }
 }
-
-Base64Encode.defaultProps = {};
-
-Base64Encode.propTypes = {};
 
 export default Base64Encode;

@@ -1,6 +1,4 @@
 import React, { PureComponent } from 'react';
-//import PropTypes from 'prop-types';
-
 import getSlug from 'speakingurl';
 
 const upperCaseStrings = [
@@ -72,8 +70,5 @@ class Slug extends PureComponent {
     );
   }
 }
-
-Slug.propTypes = {
-};
 
 export default Slug;

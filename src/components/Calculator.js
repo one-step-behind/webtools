@@ -2,6 +2,33 @@ import React, { PureComponent } from 'react';
 
 const operators = ['+', '-', '*', '/', '%', '^'];
 
+const localeString = (value) => {
+  return value.toLocaleString('en', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 20
+  });
+};
+
+const calculate = (formula) => {
+  try {
+    return new Function('return ' + formula)();
+  } catch (err) {
+    return NaN;
+  }
+};
+
+const getFormula = (firstValue, sign, secondValue) => {
+  if (sign === '^') {
+    return Math.pow(firstValue, secondValue);
+  }
+
+  if (sign === '%') {
+    return (firstValue/100) * secondValue;
+  }
+
+  return firstValue + sign + secondValue;
+};
+
 class Calculator extends PureComponent {
   constructor(props) {
     super(props);
@@ -30,19 +57,6 @@ class Calculator extends PureComponent {
     const fieldName = event.target.getAttribute('name');
     const fieldValue = (fieldName !== 'sign') ? event.target.value.replace(/[^0-9.,]/g, '') : event.target.value;
 
-    /*
-        this.setState(prevState => {
-          if (prevState.firstValue !== '' || prevState.secondValue !== '') {
-            return {
-              sum: eval(prevState.firstValue + prevState.sign + prevState.secondValue),
-              [fieldName]: fieldValue
-            }
-          }
-
-          return {ieldName]: fieldValue };
-        });
-    */
-
     this.setState({
       [fieldName]: fieldValue,
     }, () => {
@@ -50,41 +64,12 @@ class Calculator extends PureComponent {
     });
   };
 
-  localeString(value) {
-    return value.toLocaleString('en', {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 20
-    });
-  }
-
-  calculate(formula) {
-    try {
-      return new Function('return ' + formula)();
-    } catch (err) {
-      return NaN;
-    }
-  }
-
-  getFormula(firstValue, sign, secondValue) {
-    if (sign === '^') {
-      return Math.pow(this.state.firstValue, this.state.secondValue);
-    }
-
-    if (sign === '%') {
-      return (this.state.firstValue/100) * this.state.secondValue;
-    }
-
-    return this.state.firstValue + sign + this.state.secondValue;
-  }
-
   calculateAndOutput = () => {
-    const sign = this.state.sign;
-
-    if (operators.some(item => sign === item) && this.state.firstValue && this.state.secondValue) {
-      const formula = this.getFormula(this.state.firstValue, sign, this.state.secondValue);
+    if (operators.some(item => this.state.sign === item) && this.state.firstValue && this.state.secondValue) {
+      const formula = getFormula(this.state.firstValue, this.state.sign, this.state.secondValue);
 
       this.setState({
-        sum: this.calculate(formula),
+        sum: calculate(formula),
       });
     }
   };
@@ -109,7 +94,7 @@ class Calculator extends PureComponent {
             </select>
             <input type="text" name="secondValue" id="secondValue" className="inputCalc" size="20" maxLength="20" value={this.state.secondValue} onChange={this.onChange} />
             {' = '}
-            <input type="text" value={this.localeString(this.state.sum)} className="outputCalc" readOnly />
+            <input type="text" value={localeString(this.state.sum)} className="outputCalc" readOnly />
           </div>
         </div>
       </React.Fragment>

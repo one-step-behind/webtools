@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-//import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
@@ -252,7 +251,5 @@ class Rgb2Hex extends PureComponent {
     );
   }
 }
-
-Rgb2Hex.propTypes = {};
 
 export default Rgb2Hex;
