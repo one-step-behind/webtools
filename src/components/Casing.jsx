@@ -33,7 +33,7 @@ class Casing extends PureComponent {
     let outputValues = [];
 
     availableCases.map(aCase => {
-      return outputValues[aCase] = changeCase[aCase](inputValue)
+      return outputValues[aCase] = changeCase[aCase](inputValue);
     });
 
     this.setState({
