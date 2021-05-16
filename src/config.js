@@ -36,6 +36,11 @@ export default {
       ]
     },
     {
+      id: 'mailtoencoder',
+      component: 'MailTo Encoder',
+      name: 'MailTo Encoder',
+    },
+    {
       id: 'favicons',
       component: 'Favicons',
       name: 'Favicons',

@@ -24,6 +24,7 @@ import Rgb2Hex from './components/Rgb2Hex';
 import Slug from './components/Slug';
 import Casing from './components/Casing';
 import Base64 from './components/Base64';
+import MailToEncoder from './components/MailToEncoder';
 import Snippets from './components/Snippets';
 import Favicons from './components/Favicons';
 
@@ -106,6 +107,7 @@ class App extends PureComponent {
               onClickSubNavigation={this.onClickSubNavigation}
             />
           }
+          { selectedPage === 'mailtoencoder' && <MailToEncoder /> }
           { selectedPage === 'favicons' && <Favicons /> }
           { selectedPage === 'snippets' && <Snippets /> }
         </div>
